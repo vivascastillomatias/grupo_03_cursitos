@@ -3,53 +3,32 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Registrarse</title>
-        <link rel="stylesheet" href="/public/css/modern-normalize.css" />
-        <link rel="stylesheet" href="/public/css/style-Ian.css" />
-        <link rel="stylesheet" href="/public/css/style-login-registro.css" />
+        <title>Iniciar sesión</title>
+        <link rel="stylesheet" href="/stylesheets/modern-normalize.css" />
+        <link rel="stylesheet" href="/stylesheets/style-Ian.css" />
+        <link rel="stylesheet" href="/stylesheets/style-login-registro.css" />
     </head>
 
     <body>
-        <header>
-            <!-- Menu -->
-            <nav class="menu_main row align-center justify-space-around">
-                <div class="menu_logo">
-                    <img class="logo" onclick="location.href='/'" src="/images/logo.png" alt="" srcset="" />
-    
-                </div>
-                <div class="menu_search hide-in-mobile">
-                    <input class="search" type="search" name="" id="" placeholder="Búsqueda" />
-                </div>
-                <div class="hamburger-menu">☰</div>
-                <div class="menu_buttons row align-center">
-                    <div class="search_icon_placeholder"></div>
-                    <img src="/images/carrito.png" onclick="location.href='/carrito'" alt="" class="cart" />
-                    <div class="inicio_registro hide-in-mobile">
-                    </div>
-                </div>
-    
-            </nav>
-            <!-- Fin menu -->
-        </header>
+        <!-- Header -->
+        <%- include('partials/navbar') %>
+        <!-- /Header -->
         <section class="seccion-login-registro">
             <div class="box">
                 <div class="box-cabecera">
-                    <button  onclick="location.href='/login'" class="btn btn__outline button1">Iniciar sesión</button>
-                    <button  onclick="location.href='/registro'" class="btn btn__outline button2-active">Registrarte</button>
+                    <button  onclick="location.href='/users/login'" class="btn btn__outline button1-active">Iniciar sesión</button>
+                    <button  onclick="location.href='/users/signin'" class="btn btn__outline button2">Registrarte</button>
                 </div>
                 <div class="box-cuerpo">
-                    <p class="bienvenida">Bienvenido! Registrate y tené acceso a todos los cursos que ofrecemos en Cursitos.com</p>
+                    <p class="bienvenida">Hola! Inicia sesion y seguí disfrutando de todos los cursos de Cursitos.com</p>
                     <button class="btn__outline button-action btn_google">Inicia sesión con Google</button>
                     <button class="btn__outline button-action btn_facebook">Inicia sesión con Facebook</button>
-
                     <hr>
-                    
                     <input type="text" placeholder="Tu email o nombre de usuario">
                     <input type="password" placeholder="Tu contraseña">
-                    <input type="password" placeholder="Repite tu contraseña">
 
-                    <button class="btn__principal button-action">Registrarse</button>
-                    <p class="info">¿Ya tenes una cuenta? Iniciá sesion <a href="/login">aquí</a></p>
+                    <button class="btn__principal button-action">Iniciar sesión</button>
+                    <p class="info">¿No te registraste? Podes hacerlo <a href="/registro">aquí</a></p>
                 </div>
             </div>
         </section>
