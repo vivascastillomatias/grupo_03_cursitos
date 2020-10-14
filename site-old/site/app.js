@@ -33,7 +33,7 @@ app.get("/registro", function (req, res) {
 
 app.listen(port, () => {
     browserSync({
-        files: ["./*.js", "./public/*.html", "./public/css/*.css", "./public/img/*.png", "./public/img/*.jpg"],
+        files: ["./*.js", "./public/*.html", "./public/css/*.css", "./images*.png", "./images*.jpg"],
         online: false,
         open: false,
         port: port + 1,

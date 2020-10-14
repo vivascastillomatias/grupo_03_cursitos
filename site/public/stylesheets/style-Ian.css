@@ -1,0 +1,360 @@
+section,
+main,
+footer {
+    padding: 5%;
+}
+
+ul {
+    padding: 0;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+}
+
+.justify-space-around {
+    justify-content: space-around;
+}
+
+.justify-space-between {
+    justify-content: space-between;
+}
+
+.align-flex-start {
+    align-items: flex-start;
+}
+
+.align-center {
+    align-items: center;
+}
+
+.nav_top {
+    padding: 10px 0;
+    background-color: #eeeeee;
+    border-bottom: 1px solid black;
+}
+
+.menu_main {
+    padding: 15px 0px;
+}
+
+.menu_main {
+    background: #1D3643;
+    border-bottom: 1px solid #808080;
+}
+
+.logo {
+    width: 120px;
+}
+
+.rounded {
+    border-radius: 50%;
+}
+
+.btn_green {
+    background-color: #95CA3E;
+    color: black;
+}
+
+.btn_outline {
+    background-color: white;
+}
+
+.btn_rounded {
+    padding: 10px 15px;
+    border-radius: 5px;
+}
+
+.search {
+    padding: 10px;
+    border-radius: 5px;
+    width: 100%;
+}
+
+.menu_search {
+    width: 50%;
+}
+
+.menu_buttons * {
+    margin-left: 15px;
+}
+
+.percentage {
+    font-size: 2rem;
+    color: #776bf6;
+    font-weight: bold;
+}
+
+.hero {
+    background-color: #1d3643;
+    color: white;
+}
+
+#hero_cta {
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.hero_img {
+    width: 100%;
+    border-radius: 25px;
+}
+
+.hero-text {
+    padding-right: 20px;
+}
+
+.hero .search {
+    margin-top: 20px;
+}
+
+#hero_cta button {
+    margin: 10px;
+}
+
+main {
+    padding: 5%;
+}
+
+.nav_courses {
+    list-style: none;
+}
+
+.nav_courses li {
+    margin-right: 1em;
+}
+
+.nav_courses li:hover {
+    background-color: #eeeeee;
+    transition: all 0.2s ease;
+}
+
+.nav_courses li a {
+    text-decoration: none;
+    color: black;
+}
+
+.divider {
+    width: 100%;
+    height: 1px;
+    background-color: black;
+    margin-bottom: 20px;
+}
+
+.cursos {
+    flex-wrap: wrap;
+}
+
+.curso {
+    padding-right: 20px;
+    width: 20%;
+}
+
+.curso_img {
+    width: 100%;
+    height: 150px;
+    margin: auto;
+}
+
+.bg_green {
+    background-color: #8dd7cf;
+}
+
+.bg_pink {
+    background-color: #de9ae8;
+}
+
+.bg_blue {
+    background-color: #96c3ec;
+}
+
+.bg_yellow {
+    background-color: #fbe192;
+}
+
+.bg_brown {
+    background-color: #808080;
+}
+
+#otrosestudiantes {
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.mid_cta {
+    background-color: #e9a2ad;
+    color: white;
+    text-align: center;
+}
+
+#btn_empezar {
+    color: #7468f6;
+    padding: 10px 100px;
+}
+
+.cat_principal {
+    border: 1px solid #dae1e7;
+    width: 22.5%;
+}
+
+.cat_principal h4 {
+    padding: 0 10px;
+}
+
+.cat_principal .curso_img {
+    height: 200px;
+}
+
+.porque_elegirnos {
+    background-color: #f7f9fa;
+    border: 1px solid #c6d1db;
+    text-align: center;
+    padding-top: 2%;
+    padding-bottom: 2%;
+}
+
+.reasons ul {
+    list-style: none;
+}
+
+.reasons ul li {
+    margin-top: 25px;
+}
+
+.testimonial_authorinfo {
+    padding-left: 20px;
+}
+
+.testimonial {
+    width: 30%;
+}
+
+.empeza_tu_camino {
+    background-color: #f7f9fa;
+    border: 1px solid #c6d1db;
+    text-align: center;
+}
+
+#btn_empeza {
+    background-color: #6558f5;
+    color: white;
+    padding: 10px 5px;
+}
+
+.cursitos_footer {
+    background-color: #808080;
+    width: 100%;
+    color: white;
+}
+
+.cursitos_footer ul {
+    list-style: none;
+    padding: 0;
+}
+
+.cursitos_footer ul li {
+    margin-bottom: 20px;
+}
+
+.cursitos_footer .column {
+    width: 30%;
+}
+
+.hamburger-menu {
+    display: none;
+}
+
+.mobile-only {
+    display: none;
+}
+
+
+@media(max-width:480px) {
+
+    .mobile-only {
+        display: unset;
+    }
+
+    .hide-in-mobile {
+        display: none;
+    }
+
+    .menu_logo {
+        order: 0;
+    }
+
+    .logo {
+        width: 100px;
+    }
+
+    .hamburger-menu {
+        display: block;
+        font-size: 2em;
+        order: -1;
+        color: white;
+    }
+
+    .search_icon_placeholder {
+        border: 1px solid white;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+    }
+
+    .btn_rounded {
+        padding: 5px;
+    }
+
+    .hero .row {
+        flex-direction: column-reverse;
+    }
+
+    .cat_principal {
+        height: auto;
+        width: auto;
+        margin-bottom: 10px;
+        border-radius: 40px;
+    }
+
+    .testimonials_section {
+        width: 100%;
+    }
+
+    .testimonial .row {
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .testimonial {
+        width: 30%;
+    }
+
+    .testimonial .column {
+        justify-content: center;
+        align-items: center;
+    }
+
+    .testimonial_authorinfo {
+        padding: 0;
+    }
+
+    .nav_courses {
+        flex-wrap: wrap;
+    }
+
+    .nav_top {
+        flex-wrap: wrap;
+    }
+
+    .curso {
+        width: 50%;
+    }
+
+}

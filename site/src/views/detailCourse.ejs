@@ -4,36 +4,15 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Detalle de curso</title>
-        <link rel="stylesheet" href="/public/css/modern-normalize.css" />
-        <link rel="stylesheet" href="/public/css/style-Ian.css" />
-        <link rel="stylesheet" href="/public/css/style-detalleProducto.css" />
+        <link rel="stylesheet" href="/stylesheets/modern-normalize.css" />
+        <link rel="stylesheet" href="/stylesheets/style-Ian.css" />
+        <link rel="stylesheet" href="/stylesheets/style-detalleProducto.css" />
     </head>
 
     <body>
-        <header>
-    
-            <!-- Menu -->
-            <nav class="menu_main row align-center justify-space-around">
-                <div class="menu_logo">
-                    <img class="logo" onclick="location.href='/'" src="/images/logo.png" alt="" srcset="" />
-    
-                </div>
-                <div class="menu_search hide-in-mobile">
-                    <input class="search" type="search" name="" id="" placeholder="Búsqueda" />
-                </div>
-                <div class="hamburger-menu">☰</div>
-                <div class="menu_buttons row align-center">
-                    <div class="search_icon_placeholder"></div>
-                    <img src="/images/carrito.png" onclick="location.href='/carrito'" alt="" class="cart" />
-                    <div class="inicio_registro hide-in-mobile">
-                        <button class="btn_outline btn_rounded" onclick="location.href='/login'">Iniciar sesión</button>
-                        <button class="btn_green btn_rounded" onclick="location.href='/registro'">Registrarte</button>
-                    </div>
-                </div>
-    
-            </nav>
-            <!-- Fin menu -->
-        </header>
+        <!-- Header -->
+        <%- include('partials/navbar') %>
+        <!-- /Header -->
         <section class="seccion_detalle_curso">
             <div class="card_presentacion_curso">
                 <div class="columna">

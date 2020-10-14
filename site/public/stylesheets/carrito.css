@@ -1,0 +1,304 @@
+.row {
+    display: flex;
+    flex-align: center;
+}
+
+.nav_top {
+    padding: 10px 0;
+    background-color: #eeeeee;
+    border-bottom: 1px solid black;
+}
+
+.align-center {
+    align-items: center;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    flex-align: center;
+}
+
+.rounded {
+    border-radius: 50%;
+}
+
+.cta__red {
+    background-color: #bd243b;
+    color: white;
+}
+
+.cta__outline {
+    background-color: white;
+}
+
+.rounded__button {
+    padding: 10px 15px;
+    border-radius: 5px;
+}
+
+.search {
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.percentage {
+    font-size: 2rem;
+    color: #776bf6;
+    font-weight: bold;
+}
+
+.hero {
+    background-color: #d9d6f5;
+    padding: 20px;
+    color:black;
+    
+
+}
+
+
+.ccinco p {
+    color: black;
+}
+
+.pnewprice {
+    color:#d3455b;
+}
+
+
+.hero h1 {
+    color:  #1D3643;
+    padding: 0px;
+    margin: 0px;
+}
+
+h2 {
+    color: #194a66;
+}
+.ccero {
+    width: 100%;
+    display: flex;
+    width: auto;
+    flex-direction: column;
+    background-color:  #d9d6f5
+
+}
+
+.cuno {
+
+display: flex;
+justify-content: center;
+flex-direction: row;
+}
+
+.cdos {
+    width: 70%;
+    display: flex;
+justify-content: center;
+flex-direction: column;
+}
+
+.ctres {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #aec0ee;
+    text-align: inherit;
+    background-color: #eeaece1a
+    }
+
+.ccuatro {
+    display: flex;
+    justify-content: end;
+    flex-direction: column;
+    border-style: solid;
+    border-width: 3px;
+    border-color: #aec0ee;
+    padding-right: 20px;
+    width: 30%;
+    margin-left: 2px;
+    background-color: #5f7c8b36;
+    padding-left: 20px;
+    }
+
+.ccinco {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 10px;
+    }
+
+.cseis {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.csiete {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: right;
+    padding: 20px;
+    width: 350px;
+}
+
+.cocho {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.cnueve {
+    padding: 20px;
+}
+
+.cdiez {
+    background-color: #d0d9f1;
+    display: flex;
+    justify-content: left;
+    flex-direction: row;
+    padding-top: 0px;
+   
+}
+
+.csavedelete {
+    border: none;
+    background: none;
+    padding-right: 25px;
+    font-size: 12px;
+    text-align: right;
+    width: 100%
+}
+
+.ctotal {
+    font-size:40px;
+    margin-bottom: 5px;
+    margin-top: 10px;
+    text-align: left;
+}
+
+.ctotalnumber {
+    font-size:40px;
+    color:#d3455b;
+    margin-top: 1px ;
+    margin-bottom: 1px;
+}
+
+.cdiscount {
+    font-size: 19px;
+    color: grey;
+    margin-bottom: 1px;
+}
+
+.cdiscountp {
+    font-size: 19px;
+    margin-top:15px;
+    margin-bottom:15px;
+    color: grey;
+}
+
+.cbutton{
+    padding: 10px 15px;
+    border-radius: 5px;
+    background-color: #95CA3E;
+    color:white;
+}
+
+.capplyd {
+    background-color: #95CA3E; 
+    color: white;
+    
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+
+    font-size: 11px;
+    margin-left: 1px;
+    width: 30%;
+    height: 33px;
+}
+
+.cinsertd {
+    font-size: 10px;
+    margin-bottom: 20px;
+    background-color: wite; 
+    color: grey;
+    width: 70%;
+    padding: 10px;
+    height: 33px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.cdiscountalign {
+    width: 100%;
+    display: flex;
+    flex-direction: center;
+    justify-content: row;
+}
+
+@media(max-width:768px){
+    .cuno { display: flex;
+            justify-content: center;
+            flex-direction: column;
+          }
+    .cdos {
+        width: 100%;
+    }
+    .ccuatro {
+        width:100%;
+    }
+    .ctotal {
+        text-align: center;
+        color: #1D3643;
+    }
+    .ctotalnumber {
+        text-align: center;
+    }
+    .cdiscountp {
+        text-align: center;
+    }
+    .cdiscount {
+        text-align: center;
+    }
+    .cocho {
+        flex-direction: column;
+        align-items: center;
+    }
+    .csavedelete {
+        margin-left: -29px;
+    }
+    .cnueve img {
+        position: relative;
+        bottom: -30px;
+    }
+
+}
+
+@media(max-width:480px){
+    .cnueve img {
+        position: relative;
+        bottom: -31px;
+}
+    .ctexto {
+        font-size:80%;
+    }
+    .csavedelete {
+        padding:0px;
+    }
+    .cocho {
+        align-items: right;
+        margin-top: 1px;
+        margin-bottom: -20px;
+    }
+}
+@media(max-width:386px){
+
+        .cnueve {
+            display: none;
+        }
+}

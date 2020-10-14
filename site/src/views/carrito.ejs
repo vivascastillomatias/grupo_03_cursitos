@@ -4,45 +4,15 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Carrito</title>
-        <link rel="stylesheet" href="/public/css/modern-normalize.css" />
-        <link rel="stylesheet" href="/public/css/style-Ian.css" />
-        <link rel="stylesheet" href="/public/css/carrito.css" />
+        <link rel="stylesheet" href="/stylesheets/modern-normalize.css" />
+        <link rel="stylesheet" href="/stylesheets/style-Ian.css" />
+        <link rel="stylesheet" href="/stylesheets/carrito.css" />
     </head>
 
     <body>
-        <header>
-            <!-- Navbar temporaria -->
-            <!-- <nav class="nav_top row justify-space-around">
-                <a href="/">Inicio (Index)</a>
-                <a href="/detalleProducto">Detalle Producto</a>
-                <a href="/login">Login</a>
-                <a href="/registro">Registro</a>
-                <a href="/carrito">Carrito</a>
-            </nav> -->
-            <!-- Fin navbar -->
-    
-            <!-- Menu -->
-            <nav class="menu_main row align-center justify-space-around">
-                <div class="menu_logo">
-                    <img class="logo" onclick="location.href='/'" src="/images/logo.png" alt="" srcset="" />
-    
-                </div>
-                <div class="menu_search hide-in-mobile">
-                    <input class="search" type="search" name="" id="" placeholder="Búsqueda" />
-                </div>
-                <div class="hamburger-menu">☰</div>
-                <div class="menu_buttons row align-center">
-                    <div class="search_icon_placeholder"></div>
-                    <!-- <img src="/images/carrito.png" alt="" class="cart" /> -->
-                    <div class="inicio_registro hide-in-mobile">
-                        <button class="btn_outline btn_rounded" onclick="location.href='/login'">Iniciar sesión</button>
-                        <button class="btn_green btn_rounded" onclick="location.href='/registro'">Registrarte</button>
-                    </div>
-                </div>
-    
-            </nav>
-            <!-- Fin menu -->
-        </header>
+        <!-- Header -->
+        <%- include('partials/navbar') %>
+        <!-- /Header -->
         <section class="hero">
             <div class="ccero">
             <h1 class="hero"> /Carrito</h1>
@@ -51,19 +21,19 @@
             <div class="cuno">
             <div class="cdos">
             <div class="ctres">
-                <div class="cnueve"><p><img src="/imagescurso1.png"></p></div><div class="ccinco"><p>CURSO 01 EN X MESES</p>
+                <div class="cnueve"><p><img src="/images/curso1.png"></p></div><div class="ccinco"><p>CURSO 01 EN X MESES</p>
                 <p class="ctexto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure quasi illum ipsam error sint voluptatum ullam in eius eum natus?</p></div>
                 <div class="csiete"><div class="cocho"><p class="pnewprice">$9999</p><p>$10000</p></div><div class="seis"><p><button class="csavedelete" href="asd">ELIMINAR</button>
                 <button class="csavedelete" href="asd">GUARDAR PARA DESPUÉS</button></p></div></div>   
             </div>
             <div class="ctres">
-                <div class="cnueve"><p><img src="/imagescurso2.png"></p></div><div class="ccinco"><p>CURSO 01 EN X MESES</p>
+                <div class="cnueve"><p><img src="/images/curso2.png"></p></div><div class="ccinco"><p>CURSO 01 EN X MESES</p>
                 <p class="ctexto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure quasi illum ipsam error sint voluptatum ullam in eius eum natus?</p></div>
                 <div class="csiete"><div class="cocho"><p class="pnewprice">$9999</p><p>$10000</p></div><div class="cseis"><p><button class="csavedelete" href="asd">ELIMINAR</button>
                 <button class="csavedelete" href="asd">GUARDAR PARA DESPUÉS</button></p></div></div>   
             </div>
             <div class="ctres">
-                <div class="cnueve"><p><img src="/imagescurso3.png"></p></div><div class="ccinco"><p>CURSO 01 EN X MESES</p>
+                <div class="cnueve"><p><img src="/images/curso3.png"></p></div><div class="ccinco"><p>CURSO 01 EN X MESES</p>
                     <p class="ctexto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure quasi illum ipsam error sint voluptatum ullam in eius eum natus?</p></div>
                     <div class="csiete"><div class="cocho"><p class="pnewprice">$9999</p><p>$10000</p></div><div class="cseis"><p><button class="csavedelete" href="asd">ELIMINAR</button>
                     <button class="csavedelete" href="asd">GUARDAR PARA DESPUÉS</button></p></div></div>                     
