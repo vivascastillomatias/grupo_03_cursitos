@@ -1,0 +1,143 @@
+body{
+    background-color: #1D3643;
+}
+
+.btn__outline{
+    padding: 10px 15px;
+    border-radius: 5px;
+    background-color: white;
+}
+
+.btn__outline:hover{
+    padding: 10px 15px;
+    border-radius: 5px;
+    background-color: grey;
+    color: white;
+} 
+
+.btn__principal{
+    padding: 10px 15px;
+    border-radius: 5px;
+    background-color: #95CA3E;
+    color:black;
+}
+
+.btn__principal:hover{
+    padding: 10px 15px;
+    border-radius: 5px;
+    background-color: #62822d;
+    color:white;
+}
+
+.btn__accion-login-form{
+    width: 100%;
+}
+
+.seccion-login-registro .box .box-cuerpo .bienvenida{
+    text-align: center;
+}
+
+@media(min-width:320px){
+    .seccion-login-registro {
+        display: flex;
+        padding-top: 5vh;
+        padding-bottom: 5vh;
+        justify-content: center;
+    }
+    .seccion-login-registro .box{
+        /* margin-top: 6vh;
+        margin-bottom: 6vh; */
+        width: 100%;
+        background-color: white;
+        color: black;
+        border-radius: 15px;
+        min-height: 100hv;
+        box-sizing: border-box;
+    }
+    .box .box-cabecera{
+        display: flex;
+    }
+    .box-cabecera .btn{
+        cursor: pointer;
+        border: solid 2px #093557;
+        width: 50%;
+        padding: 15px;
+        border-radius: 0;
+    }
+    
+    .box-cabecera .button1{
+        border-left: 0px;
+        border-top: 0px;
+        border-top-left-radius: 15px;
+    }
+    .box-cabecera .button1-active{
+        border: 0px;
+        border-top-left-radius: 15px;
+    }
+    .box-cabecera .button2{
+        border-right: 0px;
+        border-top: 0px;
+        border-top-right-radius: 15px;
+    
+    }
+    .box-cabecera .button2-active{
+        border: 0px;
+        border-top-right-radius: 15px;
+    }
+    .box-cabecera .btn:hover{
+        border: solid 2px #1D3643;
+        background-color: #1D3643;
+    }
+
+    .box .box-cuerpo{
+        margin-top: 30px;
+        padding-right: 5%;
+        padding-left: 5%;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    .box-cuerpo input, .button-action{
+        width: 100%;
+        margin-top: 5%;
+        padding: 10px 15px;
+        border-radius: 5px;
+    }
+    .box-cuerpo .btn_google:hover{
+        background-color: black
+    }
+    .box-cuerpo .btn_facebook{
+        background-color: #3b5998;
+        color: white;
+    }
+    .box-cuerpo .btn_facebook:hover{
+        background-color: #2b3c63;
+        color: white;
+    }
+    .box-cuerpo .info{
+        text-align: center;
+    }
+}
+
+
+@media(min-width:768px){
+    .seccion-login-registro .box{
+        width: 45%;
+        background-color: white;
+        color: black;
+        border-radius: 15px;
+        min-height: 100hv;
+        box-sizing: border-box;
+    }
+}
+
+
+@media(min-width:1024px){
+    .seccion-login-registro .box{
+        width: 40%;
+        background-color: white;
+        color: black;
+        border-radius: 15px;
+        min-height: 100hv;
+        box-sizing: border-box;
+    }
+}

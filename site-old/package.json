@@ -1,0 +1,27 @@
+{
+    "name": "grupo_3_cursitos",
+    "version": "1.0.0",
+    "description": "Este es un ecommerce para la venta de cursos.",
+    "main": "app.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "dev": "nodemon app.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/ikx94/grupo_3_cursitos.git"
+    },
+    "author": "@ikx94 @francolosa @vivascastillomatias",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/ikx94/grupo_3_cursitos/issues"
+    },
+    "homepage": "https://github.com/ikx94/grupo_3_cursitos#readme",
+    "dependencies": {
+        "express": "^4.17.1"
+    },
+    "devDependencies": {
+        "browser-sync": "^2.26.12",
+        "nodemon": "^2.0.4"
+    }
+}
