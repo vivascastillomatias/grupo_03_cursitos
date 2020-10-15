@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Detalle de curso</title>
+        <link rel="stylesheet" href="/stylesheets/modern-normalize.css" />
+        <link rel="stylesheet" href="/stylesheets/style-Ian.css" />
+        <link rel="stylesheet" href="/stylesheets/style-create-modify-course.css" />
+
+    </head>
+
+    <body>
+        <!-- Header -->
+        <%- include('../partials/navbar') %>
+        <!-- /Header -->
+        
+        <section class="seccion-create_modify-course">
+            <div class="box">
+                <div class="box-cuerpo">
+                    <p class="title">Publica tu curso!</p>
+
+                    <form action="/courses/create" method="POST">
+                        
+                        <input type="text" name="name" id="name" placeholder="Nombre del curso">
+                        <input type="text" name="description" id="description" placeholder="Descripcion del curso">
+                        
+                        <select name="category" id="category">
+                            <option value="">Elegí una categoría</option>
+                            <option value="Programacion front-end">Programacion front-end</option>
+                            <option value="Programacion back-end">Programacion back-end</option>
+                            <option value="Marketing Digital">Marketing Digital</option>
+                            <option value="Edición multimedia">Edición multimedia</option>
+                            <option value="Negocios, inversiones, trading">Negocios, inversiones, trading</option>
+                        </select>
+                        
+                        <input type="text" name="price" id="price" placeholder="Precio del curso">
+                        <input type="text" name="features" id="features" placeholder="Caracteristicas del curso">
+                        <input type="file"  name="image" id="image"  class="inputTypeFile" placeholder="Imagen del curso">
+                        
+                        <input type="text" name="link" id="link" placeholder="Link del curso">
+                        
+                        <hr>
+                        <button class="btn__principal button-action">Publicar curso</button>
+                        <button class="btn__outline button-action">Cancelar</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="cursitos_footer">
+            <nav class="row justify-space-between align-flex-start">
+                <div class="column">
+                    <ul>
+                        <li>Ayuda y soporte</li>
+                        <li>Contactanos</li>
+                        <li>Mapa del sitio</li>
+                    </ul>
+                </div>
+                <div class="column">
+                    <ul>
+                        <li>Preguntas Frecuentes</li>
+                        <li>Política de Privacidad y Cookies</li>
+                        <li>Sobre Nosotros</li>
+                    </ul>
+                </div>
+                <div class="column">
+                    <ul>
+                        <li>Términos y Condiciones</li>
+
+                        <select class="lang_selector" name="idioma" id="idioma">
+                            <option value="espanol">Español</option>
+                            <option value="ingles">Inglés</option>
+                        </select>
+                    </ul>
+                </div>
+            </nav>
+
+            <div class="row justify-space-between">
+                <div class="column">
+                    <div class="menu_logo">
+                        <img class="logo" src="/images/logo.png" alt="" srcset="" />
+                    </div>
+                </div>
+
+                <div class="column">
+                    <p>2020, CURSITOS. INC</p>
+                </div>
+            </div>
+        </footer>
+    </body>
+</html>

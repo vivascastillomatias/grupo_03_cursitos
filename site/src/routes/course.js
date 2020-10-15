@@ -2,11 +2,6 @@ var express = require('express');
 var router = express.Router();
 const courseController = require('../controllers/courseController')
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-    res.render('detailCourse');
-});
-
 
 //Get Administrar cursos -> devolver pagina "ver mis cursos"
 router.get('/all', courseController.all)
@@ -16,6 +11,9 @@ router.get('/create', courseController.create)
 
 //post registro -> registrar un nuevo curso
 router.post('/create', courseController.store)
+
+//Get Ver detalle de curso
+router.get('/detail/:id', courseController.detail)
 
 //Get borrar un curso -> devolver pagina
 router.delete('/detail/:id', courseController.delete)

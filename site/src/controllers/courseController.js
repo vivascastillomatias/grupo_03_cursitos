@@ -6,8 +6,11 @@ module.exports = {
     all: (req, res) => {
         res.send('estas viendo todos los articulos del carrito del generador')
     },
+    detail: (req, res) => {
+        res.render('course/detail')
+    },
     create: (req, res) => {
-        res.send('estas viendo la vista de creacion de cursos')
+        res.render('course/create')
     } ,
     store: (req, res) => {
        res.send('creaste un cursos') 
@@ -19,7 +22,8 @@ module.exports = {
         res.send('acabas de borrar y te estoy reenviando a la vista general de cursos')
     },
     modifyView: (req, res) => {
-        res.send('estas viendo la vista de modificacion de curso')
+        // res.send('estas viendo la vista de modificacion de curso')
+        res.render('course/modify')
     },
     modify: (req, res) => {
         res.send('modificaste un curso')
