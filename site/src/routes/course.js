@@ -16,14 +16,15 @@ router.post('/create', courseController.store)
 router.get('/detail/:id', courseController.detail)
 
 //Get borrar un curso -> devolver pagina
-router.delete('/detail/:id', courseController.delete)
+router.delete('/delete/:id', courseController.delete)
 
 //delete borrar -> borrar un curso
 router.delete('/detail/:id', courseController.deleteAndStay)
 
 //Get modificar un curso -> devolver pagina
-router.get('/modify/:id', courseController.modifyView)
+router.get('/detail/modify/:id', courseController.modifyView)
 
 //PUT modificar -> modificar un usuario
-router.put('/modify/:id/', courseController.modify)
+router.put('/detail/modify/:id', courseController.modify)
+
 module.exports = router;

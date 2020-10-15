@@ -72,6 +72,11 @@
     margin: 0px;
 }
 
+.beta {
+    display: flex;
+    flex-direction: column;
+}
+
 h2 {
     color: #194a66;
 }
@@ -92,10 +97,10 @@ flex-direction: row;
 }
 
 .cdos {
-    width: 70%;
+    width: auto;
     display: flex;
 justify-content: center;
-flex-direction: column;
+flex-direction: row;
 }
 
 .ctres {
@@ -127,7 +132,8 @@ flex-direction: column;
     display: flex;
     justify-content: center;
     flex-direction: column;
-    padding: 10px;
+    padding: 20px;
+    width: 80%;
     }
 
 .cseis {
@@ -155,6 +161,8 @@ flex-direction: column;
 
 .cnueve {
     padding: 20px;
+    display: flex;
+    margin: 20px;
 }
 
 .cdiez {
@@ -242,6 +250,9 @@ flex-direction: column;
 }
 
 @media(max-width:768px){
+    .cdos {
+        flex-direction: column;
+    }
     .cuno { display: flex;
             justify-content: center;
             flex-direction: column;
@@ -272,18 +283,14 @@ flex-direction: column;
     .csavedelete {
         margin-left: -29px;
     }
-    .cnueve img {
-        position: relative;
-        bottom: -30px;
+    .cnueve {
+        display: none;
     }
 
 }
 
 @media(max-width:480px){
-    .cnueve img {
-        position: relative;
-        bottom: -31px;
-}
+
     .ctexto {
         font-size:80%;
     }
@@ -295,10 +302,9 @@ flex-direction: column;
         margin-top: 1px;
         margin-bottom: -20px;
     }
+
 }
 @media(max-width:386px){
 
-        .cnueve {
-            display: none;
-        }
+
 }

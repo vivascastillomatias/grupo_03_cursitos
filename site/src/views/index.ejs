@@ -73,37 +73,19 @@
             </select>
         </nav>
         <div class="divider hide-in-mobile"></div>
-
+        
         <section class="cursos row justify-space-around">
-            <article class="curso" onclick="location.href='/courses/detail/<id>'">
-                <div class="curso_img bg_green"></div>
-                <h4>Curso 01 en X meses [NOMBRE DEL CURSO]</h4>
+            <% courses.forEach(courses=>{%>
+            <article class="curso" method="GET" onclick="location.href='/courses/detail/<%=courses.id%>'">
+                <div class="curso_img bg_green">              
+                    <%=courses.image%>
+                </div>
+                <h4>
+                    <%=courses.name%>
+                </h4>
             </article>
+            <%})%>
 
-            <article class="curso">
-                <div class="curso_img bg_pink"></div>
-                <h4>Curso 02 en X meses</h4>
-            </article>
-
-            <article class="curso">
-                <div class="curso_img bg_blue"></div>
-                <h4>Curso 03 en X meses</h4>
-            </article>
-
-            <article class="curso">
-                <div class="curso_img bg_yellow"></div>
-                <h4>Curso 04 en X meses</h4>
-            </article>
-
-            <article class="curso">
-                <div class="curso_img bg_brown"></div>
-                <h4>Curso 05 en X meses</h4>
-            </article>
-
-            <article class="curso mobile-only">
-                <div class="curso_img bg_green"></div>
-                <h4>Curso 00 en X meses</h4>
-            </article>
         </section>
 
         <p id="otrosestudiantes">Otros estudiantes están viendo</p>
@@ -254,46 +236,7 @@
     <!-- Fin empeza tu camino -->
 
     <!-- Footer -->
-    <footer class="cursitos_footer">
-        <nav class="row justify-space-between align-flex-start">
-            <div class="column">
-                <ul>
-                    <li>Ayuda y soporte</li>
-                    <li>Contactanos</li>
-                    <li>Mapa del sitio</li>
-                </ul>
-            </div>
-            <div class="column">
-                <ul>
-                    <li>Preguntas Frecuentes</li>
-                    <li>Política de Privacidad y Cookies</li>
-                    <li>Sobre Nosotros</li>
-                </ul>
-            </div>
-            <div class="column">
-                <ul>
-                    <li>Términos y Condiciones</li>
-
-                    <select class="lang_selector" name="idioma" id="idioma">
-                        <option value="espanol">Español</option>
-                        <option value="ingles">Inglés</option>
-                    </select>
-                </ul>
-            </div>
-        </nav>
-
-        <div class="row justify-space-between">
-            <div class="column">
-                <div class="menu_logo">
-                    <img class="logo" src="/images/logo.png" alt="" srcset="" />
-                </div>
-            </div>
-
-            <div class="column">
-                <p>2020, CURSITOS. INC</p>
-            </div>
-        </div>
-    </footer>
+    <%- include('partials/footer') %>
     <!-- End footer -->
 
 

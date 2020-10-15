@@ -2,12 +2,12 @@ var express = require('express');
 var router = express.Router();
 const carritoController = require('../controllers/carritoController')
 /* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.render('carrito');
-});
+// router.get('/', function(req, res, next) {
+//   res.render('carrito');
+// });
 
 //Get Administrar -> devolver pagina "Carrito"
-router.get('/all', carritoController.all)
+router.get('/', carritoController.all)
 
 //Get registro curso -> devolver pagina 
 //¿Enviar a la vista de creacion de cursos o simplemente borrar?
@@ -18,7 +18,7 @@ router.get('/create', carritoController.create)
 router.post('/create', carritoController.store)
 
 //PUT borrar un curso del carrito
-router.delete('/detail/:id', carritoController.delete)
+router.delete('/:id', carritoController.delete)
 
 //POST confirmar compra -> devolver pagina
 router.post('/buy', carritoController.buy)
