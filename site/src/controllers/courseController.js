@@ -18,14 +18,13 @@ module.exports = {
     } ,
     store: (req, res) => {
         var newCourse = {
-            "id": courses[courses.length-1].id+1,
+            "id": (courses[courses.length-1].id+1),
             ...req.body
-          //"image": , Falta Multer
-    }
-        var newCourses = [...newCourse, courses]
-        var newCoursesJSON = JSON.stringify(newCourses)
-        fs.writeFileSync(coursesFilePath, newCoursesJSON)
-       res.send('creaste un cursos') 
+        }
+        var newCourses = [...courses, newCourse]
+        console.log(newCourses)
+        fs.writeFileSync(coursesFilePath, JSON.stringify(newCourses))
+       res.render('index', {courses}) 
     } ,
     delete: (req, res) => {
         var newCourses = courses.filter(courses => 
