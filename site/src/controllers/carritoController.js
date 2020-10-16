@@ -3,7 +3,7 @@ const path = require('path');
 const carritoFilePath = path.join(__dirname, '../data/carritoDataBase.json');
 const carrito = JSON.parse(fs.readFileSync(carritoFilePath, 'utf-8'));
 const coursesFilePath = path.join(__dirname, '../data/coursesDataBase.json');
-const courses = JSON.parse(fs.readFileSync(coursesFilePath, 'utf-8'));
+//const courses = JSON.parse(fs.readFileSync(coursesFilePath, 'utf-8'));
 
 module.exports = {
     all: (req, res) => {
@@ -17,6 +17,9 @@ module.exports = {
        res.send('te estoy mandando a la vista de confirmar creacion de cursos') 
     } ,
     delete: (req, res) => {
+        var newCarrito = carrito.filter(carrito => 
+            req.params.id != carrito.id)
+        fs.writeFileSync(carritoFilePath, JSON.stringify(newCarrito))
         console.log('Se eliminó un producto y se redirecciono al carrito')
         res.redirect('../carrito')
     } ,

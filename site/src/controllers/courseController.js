@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const { brotliDecompressSync } = require('zlib');
 const coursesFilePath = path.join(__dirname, '../data/coursesDataBase.json');
 const courses = JSON.parse(fs.readFileSync(coursesFilePath, 'utf-8'));
 
@@ -16,9 +17,20 @@ module.exports = {
         res.render('course/create')
     } ,
     store: (req, res) => {
+        var newCourse = {
+            "id": courses[courses.length-1].id+1,
+            ...req.body
+          //"image": , Falta Multer
+    }
+        var newCourses = [...newCourse, courses]
+        var newCoursesJSON = JSON.stringify(newCourses)
+        fs.writeFileSync(coursesFilePath, newCoursesJSON)
        res.send('creaste un cursos') 
     } ,
     delete: (req, res) => {
+        var newCourses = courses.filter(courses => 
+            req.params.id != courses.id)
+        fs.writeFileSync(coursesFilePath, JSON.stringify(newCourses))
         console.log('borrado y redireccionado a index')
         res.redirect('../../')
     } , 
