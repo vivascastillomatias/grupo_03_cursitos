@@ -3,7 +3,7 @@ const path = require('path');
 const carritoFilePath = path.join(__dirname, '../data/carritoDataBase.json');
 const carrito = JSON.parse(fs.readFileSync(carritoFilePath, 'utf-8'));
 const coursesFilePath = path.join(__dirname, '../data/coursesDataBase.json');
-//const courses = JSON.parse(fs.readFileSync(coursesFilePath, 'utf-8'));
+const courses = JSON.parse(fs.readFileSync(coursesFilePath, 'utf-8'));
 
 module.exports = {
     all: (req, res) => {
@@ -11,10 +11,15 @@ module.exports = {
         res.render('carrito', {courses: carrito})
     },
     create: (req, res) => {
-        res.send('te estoy mandando a la vista de creacion de cursos')
+
     } ,
     store: (req, res) => {
-       res.send('te estoy mandando a la vista de confirmar creacion de cursos') 
+        var id = req.params.id
+        var courseToCarrito = { ...courses[id]}
+        var newCarrito = [...carrito, courseToCarrito]
+        fs.writeFileSync(carritoFilePath, JSON.stringify(newCarrito))
+        res.render('carrito', {courses: carrito})
+       console.log('se agregó un curso al carrito') 
     } ,
     delete: (req, res) => {
         var newCarrito = carrito.filter(carrito => 

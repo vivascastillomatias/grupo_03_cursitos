@@ -10,7 +10,7 @@ router.get('/all', courseController.all)
 router.get('/create', courseController.create)
 
 //post registro -> registrar un nuevo curso
-router.post('/create', courseController.store)
+router.post('/create/', courseController.store)
 
 //Get Ver detalle de curso
 router.get('/detail/:id', courseController.detail)

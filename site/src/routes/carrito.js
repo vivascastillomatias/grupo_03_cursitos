@@ -10,12 +10,12 @@ const carritoController = require('../controllers/carritoController')
 router.get('/', carritoController.all)
 
 //Get registro curso -> devolver pagina 
-//¿Enviar a la vista de creacion de cursos o simplemente borrar?
-router.get('/create', carritoController.create)
+//Por ahora está de más
+//router.get('/create/', carritoController.create)
 
 //post registro -> registrar un nuevo curso
-//Cade de maduro con la pregunta de arriba
-router.post('/create', carritoController.store)
+//Responde al "Agregar al carrito" que viene desde la vista de detalle
+router.post('/create/:id', carritoController.store)
 
 //PUT borrar un curso del carrito
 router.delete('/:id', carritoController.delete)
