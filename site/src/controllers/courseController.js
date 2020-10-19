@@ -24,14 +24,14 @@ module.exports = {
         var newCourses = [...courses, newCourse]
         console.log(newCourses)
         fs.writeFileSync(coursesFilePath, JSON.stringify(newCourses))
-       res.render('index', {courses}) 
+       res.redirect('/') 
     } ,
     delete: (req, res) => {
         var newCourses = courses.filter(courses => 
             req.params.id != courses.id)
         fs.writeFileSync(coursesFilePath, JSON.stringify(newCourses))
         console.log('borrado y redireccionado a index')
-        res.redirect('../../')
+        res.redirect('/')
     } , 
     deleteAndStay: (req, res) => {
         console.log('borrado y redireccionado a la misma pagina')
@@ -45,6 +45,6 @@ module.exports = {
     },
     modify: (req, res) => {
         console.log('modificado y redireccionando a index')
-        res.redirect("../../..")
+        res.redirect("/")
     } 
 }
