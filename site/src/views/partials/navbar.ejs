@@ -1,22 +1,33 @@
 <header>
-    <nav class="menu_main row align-center justify-space-around">
-        <div class="menu_logo">
-            <img class="logo" onclick="location.href='/'" src="/images/logo.png" alt="" srcset="" />
-
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="/">
+            <img src="/images/logo.png" height="30" alt="" loading="lazy">
+          </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <form class=" navbar-nav mr-auto my-2 my-lg-0 input-inline">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+            <ul class="navbar-nav mr-right">
+                <li class="nav-item">
+                    <a class="nav-link" href="/courses/create">Publica tu curso <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/carrito">Carrito <span class="sr-only">
+                        <img src="/images/carrito.png" onclick="location.href='/carrito'" alt="" class="cart" />
+                    </span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/users/signin">Registrate <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/users/login">Iniciar sesión<span class="sr-only">(current)</span></a>
+                </li>
+            </ul>
         </div>
-        <div class="menu_search hide-in-mobile">
-            <input class="search" type="search" name="" id="" placeholder="Búsqueda" />
-        </div>
-        <div class="hamburger-menu">☰</div>
-        <div class="menu_buttons row align-center">
-            <div class="search_icon_placeholder"></div>
-            <img src="/images/carrito.png" onclick="location.href='/carrito'" alt="" class="cart" />
-            <div class="inicio_registro hide-in-mobile">
-                <input type="button" class="btn_outline btn_rounded" name="" id="btn_publicaTuCurso" value="Publica tu curso" onclick="location.href='/courses/create'"/>
-                <button class="btn_outline btn_rounded" onclick="location.href='/users/login'">Iniciar sesión</button>
-                <button class="btn_green btn_rounded" onclick="location.href='/users/signin'">Registrarte</button>
-            </div>
-        </div>
-
     </nav>
 </header>

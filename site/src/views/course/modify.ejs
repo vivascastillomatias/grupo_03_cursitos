@@ -1,55 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Detalle de curso</title>
-        <link rel="stylesheet" href="/stylesheets/modern-normalize.css" />
-        <link rel="stylesheet" href="/stylesheets/style-Ian.css" />
-        <link rel="stylesheet" href="/stylesheets/style-create-modify-course.css" />
-    </head>
-
-    <body>
+<!-- Head -->
+<%- include('../partials/head') %>
+<!-- /Head -->
+    <body class="bg-dark">
         <!-- Header -->
         <%- include('../partials/navbar') %>
         <!-- /Header -->
-        <section class="seccion-create_modify-course">
-            <%for(var i=0;i<courses.length;i++){%>
-            <%if(courses[i].id == id){%>
-            <div class="box">
-                <div class="box-cuerpo">
-                    <p class="title">Modificá el curso! <%=courses[i].name%></p>
-
-                    <form method="POST" action="/courses/detail/modify/<%=courses[i].id%>?_method=PUT">
-                        
-                        <input type="text" name="name" id="name" placeholder="Nombre del curso">
-                        <input type="text" name="description" id="description" placeholder="Descripcion del curso">
-                        
-                        <select name="category" id="category">
-                            <option value="">Elegí una categoría</option>
-                            <option value="Programacion front-end">Programacion front-end</option>
-                            <option value="Programacion back-end">Programacion back-end</option>
-                            <option value="Marketing Digital">Marketing Digital</option>
-                            <option value="Edición multimedia">Edición multimedia</option>
-                            <option value="Negocios, inversiones, trading">Negocios, inversiones, trading</option>
-                        </select>
-                        
-                        <input type="text" name="price" id="price" placeholder="Precio del curso">
-                        <input type="text" name="features" id="features" placeholder="Caracteristicas del curso">
-
-                        <input type="file"  name="image" id="image"  class="inputTypeFile" placeholder="Imagen del curso">
-                        
-                        <input type="text" name="link" id="link" placeholder="Link del curso">
-                        
-                        <hr>
-                        <button type="submit" class="btn__principal button-action">Guardar cambios</button>
-                            <button class="btn__outline button-action">Cancelar</button>
-                    </form>
+        <section class="jumbotron">
+            <h1 class="display-6 text-center">Modificando <%= course.name %></h1>
+            <form class="container" method="POST" action="/courses/detail/modify/<%=course.id%>?_method=PUT">
+                <div class="form-group">
+                    <label for="name">Nombre del curso</label>
+                    <input type="text" name="name" id="name" class="form-control form-control-lg"  placeholder="" value="<%= course.name %>">
                 </div>
-            </div>
-        <%}}%>
+                <div class="form-group">
+                    <label for="description">Descripcion del curso</label>
+                    <textarea class="form-control" name="description" id="description" name="textarea" placeholder="."><%= course.description %></textarea>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-6">
+                        <label for="nameFeatures">Imagen del curso</label>
+                        <img src="https://via.placeholder.com/350x150" class="card-img-top" alt="Responsive image">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+                            </div>
+                            <div class="custom-file">
+                                <input type="file" name="image" id="image" class="custom-file-input"
+                                aria-describedby="inputGroupFileAddon01">
+                                <label class="custom-file-label" for="image">Choose file</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="category">Categoría</label>
+                        <select name="category" id="category" class="form-control">
+                        <option value="<%= course.category %>">Elige una categoría</option>
+                        <option value="Programacion front-end">Programacion front-end</option>
+                        <option value="Programacion back-end">Programacion back-end</option>
+                        <option value="Marketing Digital">Marketing Digital</option>
+                        <option value="Edición multimedia">Edición multimedia</option>
+                        <option value="Negocios, inversiones, trading">Negocios, inversiones, trading</option>
+                        </select>
+                        <label for="price">Precio</label>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend block">
+                                <span class="input-group-text">$</span>
+                            </div>
+                            <input type="text" id="price" name="price" class="form-control" aria-label="Amount (to the nearest dollar)" value="<%= course.price %>">
+                            <div class="input-group-append">
+                                <span class="input-group-text">.00</span>
+                            </div>
+                        </div>
+                        <label for="discount">Descuento</label>
+                        <input type="text" class="form-control" id="discount" name="discount" value="<%= course.discount %>" placeholder="">
+                        <label for="features">Características</label>
+                        <input type="text" name="features" id="features" class="form-control" placeholder="" value="<%= course.features %>">
+                        <label for="link">Link del curso</label>
+                        <input type="text" class="form-control" id="link" name="link" placeholder="" value="<%= course.link %>">
+                    </div>
+                </div>
+    
+                <div class="row justify-content-center btn-group-lg p-2">
+                    <button type="submit"class="btn btn-success col-md-4 m-1">Modificar curso</button>
+                    <a href="#" class="btn btn-outline-dark col-md-4 m-1">Cancelar</a>
+                </div>
+    
+              </form>
         </section>
-
         <!-- Footer -->
         <%- include('../partials/footer') %>
 

@@ -1,65 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Carrito</title>
-        <link rel="stylesheet" href="/stylesheets/modern-normalize.css" />
-        <link rel="stylesheet" href="/stylesheets/style-Ian.css" />
-        <link rel="stylesheet" href="/stylesheets/carrito.css" />
-    </head>
+<!-- Head -->
+<%- include('partials/head') %>
+<!-- /Head -->
 
-    <body>
-        <!-- Header -->
-        <%- include('partials/navbar') %>
-        <!-- /Header -->
-        <section class="hero">
-            <div class="ccero">
-            <h1 class="hero"> /Carrito</h1>
-            <div class="cdiez"><h2>3 cursos en el carrito</h2></div>
-            <div class="cuno">
-            <div class="cdos">
-                <div class="beta">
-            <% courses.forEach(courses=>{%>
-            <article class="ctres">
-
-
-                <div class="cnueve">
-                    <img src="/images/curso1.png">
-                </div>
-                    <div class="ccinco">
-                        <p><%=courses.name%></p>
-                <p class="ctexto">
-                    <%=courses.description%></p>
-                </div>
-                <div class="csiete">
-                    <div class="cocho">
-                        <p class="pnewprice"><%=(courses.price)-((courses.price)*(courses.discount))/100%></p>
-                        <p>%<%=courses.discount%> OFF</p>
-                    </div>
-                    <div class="seis">
-                        <form action="/carrito/<%=courses.id%>?_method=DELETE" method="post"><button class="csavedelete" type="submit">ELIMINAR</button></form>
-                        <button class="csavedelete" href="asd">GUARDAR PARA DESPUÉS</button>
+<body class="bg-dark">
+    
+    <!-- Header -->
+	<%- include('partials/navbar') %>
+    <!-- /Header -->
+        <section class="jumbotron">
+            <h1 class="display-6">Carrito</h1>
+            <div class="row">
+                <div class="col-md-9">
+                    <div class="row row-cols-1 row-cols-md-12">
+                        <% courses.forEach(course=>{%>
+                        <div class="card mb-2">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-sm-9 col-xs-12">
+                                        <h5 class="card-title"><%=course.name%></h5>
+                                        <p class="card-text"><%=course.description%></p>
+                                    </div>
+                                    <div class="col-sm-3 col-xs-12">
+                                        <span class="badge badge-dark">$  <%=(course.price)-((course.price)*(course.discount))/100%></span>
+                                        <span class="badge badge-success"><%=course.discount%> % OFF</span>
+                                        <hr>
+                                        <form action="/carrito/<%=course.id%>?_method=DELETE" method="post">
+                                            <button type="submit" class="btn btn-secondary btn-sm">Eliminar</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <%})%>
+    
+    
                     </div>
                 </div>
-                  
-            </article>
-            <%})%>
-                </div> 
-            
-            <article class="ccuatro">
-                    <p class="ctotal">TOTAL:</p>
-                    <p class="ctotalnumber">$9999.99</p>
-                    <p class="cdiscount">$10000</p>
-                <div class="cdiscountp">
-                    <p>    0.1% de descuento</p>
+                <div class="col-md-3 mt-xs-3">
+                    <div class="card">
+                        <h5 class="card-header text-center">TOTAL</h5>
+                        <div class="card-body">
+                            <h1><span class="badge badge-secondary">$ [TOTAL PRICE]</span></h1>
+                            <h5 class="card-title">Special title treatment</h5>
+                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                            <button type="submit" class="btn btn-success form-control">Pagar</button>
+                        </div>
+                    </div>
                 </div>
-                    <form action="/carrito/buy" method="post"><button class="cbutton" href="ruta">PAGAR</button><br></form>
-                <div class="cdiscountalign">
-                    <input class="cinsertd" type="text" name="disscount" id="disscount" placeholder="INTRODUCIR EL CUPON">
-                    <button class="capplyd" href="ruta"><p>APLICAR</p></button>
-                </div>
-                </article>
             </div>
         </section>
         <%- include('partials/footer') %>

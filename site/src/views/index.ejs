@@ -1,240 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cursitos</title>
-    <link rel="stylesheet" href="/stylesheets/modern-normalize.css" />
-    <link rel="stylesheet" href="/stylesheets/style-Ian.css" />
-</head>
+<!-- Head -->
+<%- include('partials/head') %>
+<!-- /Head -->
 
-<body>
+<body class="bg-dark">
     
     <!-- Header -->
 	<%- include('partials/navbar') %>
     <!-- /Header -->
     
     <!-- Hero section -->
-    <section class="hero">
-        <h2>
-            La formación profesional en tecnología es cada vez más importante
-        </h2>
-        <div class="row justify-space-between">
-            <div class="column hero-text">
-                <p><span class="percentage">70%</span> de los graduados de Cursitos consiguen un empleo en el término de
-                    un año</p>
-                <p><span class="percentage">30%</span> crean su propia empresa de tecnología o startup</p>
-                <input class="search" type="search" name="" id="" placeholder="¿Qué querés aprender?" />
-                <div class="row" id="hero_cta">
-                    <button class="btn_outline btn_rounded">Ver los cursos</button>
-                    <button class="btn_green btn_rounded">Crea tu cuenta gratis</button>
+    <section>
+        <div class="jumbotron bg-dark text-white">
+            <!-- <div class="row text-center">
+                <h3>La formación profesional en tecnología es cada vez más importante</h3>
+            </div> -->
+            <div class="row">
+                <div class="col-sm-6">
+                    <img  class="figure-img img-fluid rounded card-img-top" src="https://placedog.net/300/150?random" alt="" srcset="">
                 </div>
-
-
+                <div class="col-sm-6">
+                    <h3> <span class="badge badge-success display-3"> 70% </span> de los graduados de Cursitos consiguen un empleo en el término de un año</h3>
+                    <h3> <span class="display-3 badge badge-success"> 30% </span> crean su propia empresa de tecnología o startup</h3>
+                    <hr>
+                    <p>Aprendé con nosotros lo ultimo en tecnología, para hacer crecer tu hobbie o formarte profesionalmente</p>
+                </div>
             </div>
-            <div class="column">
-                <img class="hero_img" src="https://placedog.net/500/500?random
-                " alt="" srcset="">
-            </div>
-        </div>
-
         </div>
     </section>
     <!-- Fin hero section -->
 
     <!-- Main -->
-    <main>
-        <h1>La selección más grande de cursos</h1>
+    <section class="jumbotron">
+        <h1 class="display-6">¿Que deseas aprender?</h1>
+        <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+        <ul class="nav justify-content-center my-lg-3">
+            
 
-        <p>Elegi entre más de 150 cursos en video y nuevos cursos añadidos cada mes</p>
 
-        <nav>
-            <ul class="nav_courses row justify-space-around hide-in-mobile">
-                <li><a href=#>Desarollo Web</a></li>
-                <li><a href=#>Marketing Digital</a></li>
-                <li><a href=#>Inversiones</a></li>
-                <li><a href=#>Ilustración y Dibujo</a></li>
-                <li><a href=#>Edición Multimedia</a></li>
-                <li><a href=#>Diseño</a></li>
-                <li><a href=#>Fotografía</a></li>
-                <li><a href=#>Animación & 3D</a></li>
-            </ul>
+            <li class="nav-item">
+              <a class="nav-link active" href="#">Todos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="#">Programacion front-end</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Programacion back-end</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Marketing Digital</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Edición multimedia</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">inversiones</a>
+            </li>
+        </ul>
+        <section class="row row-cols-1 row-cols-md-5">
+            
 
-            <select class="mobile-only" name="categorias-de-cursos" id="categorias-cursos">
-                <option value="desarrollo-web">Desarrollo Web</option>
-                <option value="marketing-digital">Marketing Digital</option>
-                <option value="inversiones">Inversiones</option>
-                <option value="ilustracion-y-dibujo">Ilustración y Dibujo</option>
-                <option value="edicion-multimedia">Edición Multimedia</option>
-                <option value="disenio">Diseño</option>
-                <option value="fotografia">Fotografía</option>
-                <option value="animacion-y-3d">Animación & 3D</option>
-            </select>
-        </nav>
-        <div class="divider hide-in-mobile"></div>
-        
-        <section class="cursos row justify-space-around">
-            <% courses.forEach(courses=>{%>
-            <article class="curso" method="GET" onclick="location.href='/courses/detail/<%=courses.id%>'">
-                <div class="curso_img bg_green">              
-                    <%=courses.image%>
+            <% courses.forEach(course=>{%>
+            <div class="col mb-3" onclick="location.href='/courses/detail/<%=course.id%>'">
+                <div class="card text-white bg-dark mb-3" style="min-height: 20rem;">
+                    <img src="https://via.placeholder.com/350x150" class="card-img-top" alt="<%=course.image%>">
+                    <div class="card-body">
+                        <h5 class="card-title"><%=course.name%></h5>
+                        <p class="card-text"><%=course.description%></p>
+                    </div>
                 </div>
-                <h4>
-                    <%=courses.name%>
-                </h4>
-            </article>
+            </div>
             <%})%>
-
-        </section>
-
-        <p id="otrosestudiantes">Otros estudiantes están viendo</p>
-        <section class="cursos row justify-space-around">
-            <article class="curso">
-                <div class="curso_img bg_green"></div>
-                <h4>Curso 06 en X meses</h4>
-            </article>
-
-            <article class="curso">
-                <div class="curso_img bg_pink"></div>
-                <h4>Curso 07 en X meses</h4>
-            </article>
-
-            <article class="curso">
-                <div class="curso_img bg_blue"></div>
-                <h4>Curso 08 en X meses</h4>
-            </article>
-
-            <article class="curso">
-                <div class="curso_img bg_yellow"></div>
-                <h4>Curso 09 en X meses</h4>
-            </article>
-
-            <article class="curso">
-                <div class="curso_img bg_brown"></div>
-                <h4>Curso 10 en X meses</h4>
-            </article>
-
-            <article class="curso mobile-only">
-                <div class="curso_img bg_green"></div>
-                <h4>Curso 00 en X meses</h4>
-            </article>
-        </section>
-    </main>
-    <!-- Fin Main -->
-
-    <!-- Mid-page CTA -->
-    <section class="mid_cta">
-        <h2>Consegui recomendaciones personalizadas</h2>
-        <h4>Responde algunas preguntas para ver tus mejores opciones</h4>
-        <button id="btn_empezar" class="btn_outline btn_rounded">Empezar</button>
-    </section>
-    <!-- Mid-page CTA -->
-
-    <!-- Principales categorías -->
-    <section>
-        <h2>Principales categorías</h2>
-        <section class="cursos row cat_principales justify-space-around">
-            <article class="cat_principal">
-                <div class="curso_img bg_green hide-in-mobile"></div>
-                <h4>Desarrollo Web</h4>
-            </article>
-
-            <article class="cat_principal">
-                <div class="curso_img bg_pink hide-in-mobile"></div>
-                <h4>Marketing Digital</h4>
-            </article>
-
-            <article class="cat_principal">
-                <div class="curso_img bg_blue hide-in-mobile"></div>
-                <h4>Negocios e inversiones</h4>
-            </article>
-
-            <article class="cat_principal">
-                <div class="curso_img bg_blue hide-in-mobile"></div>
-                <h4>Ilustración y Dibujo</h4>
-            </article>
         </section>
     </section>
-    <!-- Fin principales categorías -->
-
-    <!-- Por qué hacer un curso en Cursitos? -->
-    <section class="porque_elegirnos">
-        <h2>Por qué hacer un curso en Cursitos?</h2>
-        <div class="row reasons justify-space-around">
-            <div class="column">
-                <ul>
-                    <li>Razón 1</li>
-                    <li>Razón 2</li>
-                    <li>Razón 3</li>
-                </ul>
-            </div>
-
-            <div class="column">
-                <ul>
-                    <li>Razón 1</li>
-                    <li>Razón 2</li>
-                    <li>Razón 3</li>
-                </ul>
-            </div>
-        </div>
-
-    </section>
-    <!-- Fin Por qué hacer un curso en Cursitos? -->
-
-    <!-- Testimonials -->
-    <section class="testimonials_section">
-        <h2>Historias y testimonios</h2>
-        <div class="row align-center justify-space-around">
-            <article class="testimonial">
-                <p>Oportet uti solum de actibus prosequtionem et fugam, haec leniter et blandus et reservato.</p>
-                <div class="row">
-                    <div class="column">
-                        <img src="https://via.placeholder.com/50" alt="" class="testimonial_img rounded">
-                    </div>
-                    <div class="column testimonial_authorinfo">
-                        <p>Juan Perez</p>
-                        <a href="#">@juanperez</a>
-                    </div>
-                </div>
-            </article>
-            <article class="testimonial">
-                <p>Oportet uti solum de actibus prosequtionem et fugam, haec leniter et blandus et reservato.</p>
-                <div class="row">
-                    <div class="column">
-                        <img src="https://via.placeholder.com/50" alt="" class="testimonial_img rounded">
-                    </div>
-                    <div class="column testimonial_authorinfo">
-                        <p>Juan Perez</p>
-                        <a href="#">@juanperez</a>
-                    </div>
-                </div>
-            </article>
-            <article class="testimonial hide-in-mobile">
-                <p>Oportet uti solum de actibus prosequtionem et fugam, haec leniter et blandus et reservato.</p>
-                <div class="row">
-                    <div class="column">
-                        <img src="https://via.placeholder.com/50" alt="" class="testimonial_img rounded">
-                    </div>
-                    <div class="column testimonial_authorinfo">
-                        <p>Juan Perez</p>
-                        <a href="#">@juanperez</a>
-                    </div>
-                </div>
-            </article>
-        </div>
-
-    </section>
-    <!-- Fin Testimonials -->
-
-    <!-- Empeza tu camino -->
-    <section class="empeza_tu_camino">
-        <h2>Empezá tu camino: hacete un cursito!</h2>
-        <button id="btn_empeza" class="btn_green btn_rounded">Registrate y consegui recomendaciones
-            personalizadas</button>
-    </section>
-    <!-- Fin empeza tu camino -->
-
     <!-- Footer -->
     <%- include('partials/footer') %>
     <!-- End footer -->
