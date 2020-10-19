@@ -19,7 +19,7 @@ module.exports = {
     all: (req, res) => {
         leerCarrito();
         console.log("se accedió al carrito")
-        res.render('carrito', {courses: leerCarrito()})
+        res.render('carrito', {courses: leerCarrito(), title: "Carrito"})
     },
     // create: (req, res) => {}  
     store: (req, res) => {
