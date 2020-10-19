@@ -9,7 +9,7 @@
         <!-- /Header -->
         <section class="jumbotron">
             <h1 class="display-6 text-center">Modificando <%= course.name %></h1>
-            <form class="container" method="POST" action="/courses/detail/modify/<%=course.id%>?_method=PUT">
+            <form class="container" method="POST" action="/courses/detail/modify/<%=course.id%>?_method=PUT" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="name">Nombre del curso</label>
                     <input type="text" name="name" id="name" class="form-control form-control-lg"  placeholder="" value="<%= course.name %>">
@@ -21,13 +21,18 @@
                 <div class="form-row">
                     <div class="col-md-6">
                         <label for="nameFeatures">Imagen del curso</label>
-                        <img src="https://via.placeholder.com/350x150" class="card-img-top" alt="Responsive image">
+                        <hr>
+                        <% if(course.image != ''){ %>
+                            <img src="/images/products/<%=course.image%>" style="max-height: 20rem;"  alt="<%=course.image%>">
+                        <%}else{ %>
+                            <img src="https://via.placeholder.com/300x300" style="max-height: 20rem;" class="card-img-top" alt="<%=course.image%>">
+                        <%}%>
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
                             </div>
                             <div class="custom-file">
-                                <input type="file" name="image" id="image" class="custom-file-input"
+                                <input type="file" name="image" id="image" value="<%= course.image %>" class="custom-file-input"
                                 aria-describedby="inputGroupFileAddon01">
                                 <label class="custom-file-label" for="image">Choose file</label>
                             </div>
@@ -64,7 +69,7 @@
     
                 <div class="row justify-content-center btn-group-lg p-2">
                     <button type="submit"class="btn btn-success col-md-4 m-1">Modificar curso</button>
-                    <a href="#" class="btn btn-outline-dark col-md-4 m-1">Cancelar</a>
+                    <a href="/" class="btn btn-outline-dark col-md-4 m-1">Cancelar</a>
                 </div>
     
               </form>

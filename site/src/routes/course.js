@@ -1,7 +1,20 @@
 var express = require('express');
 var router = express.Router();
+const multer = require('multer');
+const path = require('path');
 const courseController = require('../controllers/courseController')
 
+
+var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, path.join(__dirname, '../../public/images/products'))
+    },
+    filename: function (req, file, cb) {
+        cb(null, file.fieldname + '-' + Date.now()+path.extname(file.originalname))
+    }
+})
+
+var upload = multer({ storage: storage })
 
 //Get Administrar cursos -> devolver pagina "ver mis cursos"
 router.get('/all', courseController.all)
@@ -10,7 +23,7 @@ router.get('/all', courseController.all)
 router.get('/create', courseController.create)
 
 //post registro -> registrar un nuevo curso
-router.post('/create/', courseController.store)
+router.post('/create/',upload.single('image'), courseController.store)
 
 //Get Ver detalle de curso
 router.get('/detail/:id', courseController.detail)
@@ -25,6 +38,6 @@ router.delete('/detail/:id', courseController.deleteAndStay)
 router.get('/detail/modify/:id', courseController.modifyView)
 
 //PUT modificar -> modificar un usuario
-router.put('/detail/modify/:id', courseController.modify)
+router.put('/detail/modify/:id',upload.single('image'), courseController.modify)
 
 module.exports = router;

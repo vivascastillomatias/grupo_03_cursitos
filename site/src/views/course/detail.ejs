@@ -13,7 +13,7 @@
             <div class="card-body">
 
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-7">
                         <span class="badge badge-danger my-lg-3"><%= course.category %></span>
                         <h3 class="card-title"><%= course.name %></h3>
         
@@ -31,8 +31,12 @@
                             <li>Caracteristica 7</li>
                         </ul>
                     </div>
-                    <div class="col-md-6">
-                        <img src="https://via.placeholder.com/400x300" class="card-img-top" alt="https://via.placeholder.com/350x150">
+                    <div class="col-md-5 align-content-end">
+                        <% if(course.image != ''){ %>
+                            <img src="/images/products/<%=course.image%>" width="100%" alt="<%=course.image%>">
+                        <%}else{ %>
+                            <img src="https://via.placeholder.com/300x300" class="card-img-top" alt="<%=course.image%>">
+                        <%}%>
                     </div>
                 </div>
 
@@ -40,7 +44,8 @@
             </div>
             <div class="card-footer text-muted text-center alert alert-dark  my-lg-0" role="alert">
                 <h3 class="alert-heading">$ <%= course.price %>  </h3>
-                <p><%= course.discount %>% OFF</p>
+                <!-- <p><%= course.discount %>% OFF</p> -->
+                <h4> <span class="display-4 badge badge-success"> <%= course.discount %>% OFF </span></h4>
                 <form action="/carrito/create/<%= course.id %>" method="POST" class="row justify-content-center btn-group-lg p-2">
                     <input type="submit" class="btn btn-success col-md-4 m-1" value="Agregar al carrito">
                     <input type="button" class="btn btn-outline-success col-md-4 m-1" value="Compralo ahora">
@@ -48,7 +53,7 @@
                 <hr>
                 <form action="/courses/delete/<%=course.id%>?_method=DELETE" method="POST" class="row justify-content-center btn-group-xs p-2">
                 <a href="/courses/detail/modify/<%= course.id %>" class="btn btn-outline-primary col-md-2 m-1">Editar curso</a>
-                    <input type="submit" class="btn btn-outline-primary col-md-2 m-1" value="Eliminar curso">
+                    <input type="submit" class="btn btn-outline-danger col-md-2 m-1" value="Eliminar curso">
                 </form>
         </div>
     </section>

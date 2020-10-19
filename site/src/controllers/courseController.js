@@ -34,14 +34,20 @@ module.exports = {
     } ,
     store: (req, res) => {
         let courses = leerJson();
+
+        let fileName;
+        req.file ?  fileName = req.file.filename : fileName = ''
+
+        let id = courses[courses.length-1].id+1;
         var newCourse = {
-            "id": (courses[courses.length-1].id+1),
+            id,
+            image: fileName,
             ...req.body
         }
-        var newCourses = [...courses, newCourse]
-        console.log(newCourses)
+        var newCourses = [...courses, newCourse];
         grabarJson(newCourses);
-       res.redirect('/') 
+        let ruta = '/courses/detail/'+id;
+		res.redirect(ruta);
     } ,
     delete: (req, res) => {
         let courses = leerJson();
@@ -60,15 +66,19 @@ module.exports = {
         let courses = leerJson();
         let id = req.params.id
         let course = courses.find(e => e.id == id)
-        console.log('acceso a la vista de modificaciones')
         res.render('course/modify', {course})
     },
     modify: (req, res) => {
         let courses = leerJson();
-        let id =req.params.id
-
-        let newCourse = { id, ...req.body};
+        let id =req.params.id 
         let index = courses.findIndex(e => e.id == id)
+
+        let fileName;
+        req.file ?  fileName = req.file.filename : fileName = courses[index].image;
+
+        
+        let newCourse = { id, image: fileName, ...req.body};
+
         courses.splice(index, 1, newCourse);
         grabarJson(courses);
         let ruta = '/courses/detail/'+id;
