@@ -28,6 +28,7 @@ module.exports = {
 
     console.log('redireccionado a detalle del producto seleccionado')
     res.render('course/detail', {course})
+    
     },
     create: (req, res) => {
         res.render('course/create')
@@ -36,6 +37,7 @@ module.exports = {
         let courses = leerJson();
 
         let fileName;
+
         req.file ?  fileName = req.file.filename : fileName = ''
 
         let id = courses[courses.length-1].id+1;
