@@ -1,39 +1,44 @@
 const fs = require('fs');
 const path = require('path');
-const carritoFilePath = path.join(__dirname, '../data/carritoDataBase.json');
-const carrito = JSON.parse(fs.readFileSync(carritoFilePath, 'utf-8'));
-const coursesFilePath = path.join(__dirname, '../data/coursesDataBase.json');
-const courses = JSON.parse(fs.readFileSync(coursesFilePath, 'utf-8'));
+
+const leerCarrito = () => {
+    const carritoFilePath = path.join(__dirname, '../data/carritoDataBase.json');
+    return JSON.parse(fs.readFileSync(carritoFilePath, 'utf-8'));
+}
+const leerCursos = () => {
+	const coursesFilePath = path.join(__dirname, '../data/coursesDataBase.json');
+    return JSON.parse(fs.readFileSync(coursesFilePath, 'utf-8'));
+}
+
+const grabarCarrito = (newCarrito) => {
+    const carritoFilePath = path.join(__dirname, '../data/carritoDataBase.json');
+    fs.writeFileSync(carritoFilePath, JSON.stringify(newCarrito))
+}
 
 module.exports = {
     all: (req, res) => {
-        const carritoFilePath = path.join(__dirname, '../data/carritoDataBase.json');
-        const carrito = JSON.parse(fs.readFileSync(carritoFilePath, 'utf-8'));
-
-
+        leerCarrito();
         console.log("se accedió al carrito")
-        res.render('carrito', {courses: carrito})
+        res.render('carrito', {courses: leerCarrito()})
     },
-    create: (req, res) => {
-
-    } ,
+    // create: (req, res) => {}  
     store: (req, res) => {
-        courses.forEach(course => {
+        leerCursos().forEach(course => {
             if(req.params.id == course.id){
             var newCourse = {
                     ...course
             }
-            var newCarrito = [...carrito, newCourse]
-            fs.writeFileSync(carritoFilePath, JSON.stringify(newCarrito))
+            var newCarrito = [...leerCarrito(), newCourse]
+            grabarCarrito(newCarrito)
             }
         });
         res.redirect('../')
        console.log('se agregó un curso al carrito') 
     } ,
     delete: (req, res) => {
-        var newCarrito = carrito.filter(carrito => 
+        var newCarrito = leerCarrito().filter(carrito => 
             req.params.id != carrito.id)
-        fs.writeFileSync(carritoFilePath, JSON.stringify(newCarrito))
+        grabarCarrito(newCarrito)
         console.log('Se eliminó un producto y se redirecciono al carrito')
         res.redirect('/carrito')
     } ,
