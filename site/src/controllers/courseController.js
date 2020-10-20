@@ -27,11 +27,11 @@ module.exports = {
     let course = courses.find(e => e.id == id)
 
     console.log('redireccionado a detalle del producto seleccionado')
-    res.render('course/detail', {course})
+    res.render('course/detail', {course, title:"Detalle de Curso"})
     
     },
     create: (req, res) => {
-        res.render('course/create')
+        res.render('course/create',{title:"Publica tu curso!"})
     } ,
     store: (req, res) => {
         let courses = leerJson();
@@ -68,7 +68,7 @@ module.exports = {
         let courses = leerJson();
         let id = req.params.id
         let course = courses.find(e => e.id == id)
-        res.render('course/modify', {course})
+        res.render('course/modify', {course, title:"Detalle de Curso "+id})
     },
     modify: (req, res) => {
         let courses = leerJson();

@@ -15,6 +15,10 @@
                     <input type="text" name="name" id="name" class="form-control form-control-lg"  placeholder="" value="<%= course.name %>">
                 </div>
                 <div class="form-group">
+                    <label for="description">Descripcion corta del curso</label>
+                    <input class="form-control" name="shortDescription" id="description" name="textarea" placeholder="." value="<%= course.shortDescription %>">
+                </div>
+                <div class="form-group">
                     <label for="description">Descripcion del curso</label>
                     <textarea class="form-control" name="description" id="description" name="textarea" placeholder="."><%= course.description %></textarea>
                 </div>
@@ -27,16 +31,7 @@
                         <%}else{ %>
                             <img src="https://via.placeholder.com/300x300" style="max-height: 20rem;" class="card-img-top" alt="<%=course.image%>">
                         <%}%>
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
-                            </div>
-                            <div class="custom-file">
-                                <input type="file" name="image" id="image" value="<%= course.image %>" class="custom-file-input"
-                                aria-describedby="inputGroupFileAddon01">
-                                <label class="custom-file-label" for="image">Choose file</label>
-                            </div>
-                        </div>
+                        
                     </div>
                     <div class="form-group col-md-6">
                         <label for="category">Categoría</label>
@@ -58,12 +53,25 @@
                                 <span class="input-group-text">.00</span>
                             </div>
                         </div>
+
                         <label for="discount">Descuento</label>
-                        <input type="text" class="form-control" id="discount" name="discount" value="<%= course.discount %>" placeholder="">
-                        <label for="features">Características</label>
-                        <input type="text" name="features" id="features" class="form-control" placeholder="" value="<%= course.features %>">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" id="discount" name="discount" value="<%= course.discount %>" placeholder="">
+                        </div>
+
                         <label for="link">Link del curso</label>
-                        <input type="text" class="form-control" id="link" name="link" placeholder="" value="<%= course.link %>">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" id="link" name="link" placeholder="" value="<%= course.link %>">
+                        </div>
+
+                        <label for="link">Cambia la imagen del curso</label>
+                        <div class="input-group mb-3">
+                            <div class="custom-file">
+                                <input type="file" name="image" id="image" value="<%= course.image %>" class="custom-file-input" onchange="var a = document.getElementById('fileNameLabel'); a.innerHTML = this.value"
+                                aria-describedby="inputGroupFileAddon01">
+                                <label class="custom-file-label" id="fileNameLabel" for="image"><%= course.image %>"</label>
+                            </div>
+                        </div>
                     </div>
                 </div>
     

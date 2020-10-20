@@ -8,11 +8,11 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/login', function(req, res, next) {
-  res.render('user/login');
+  res.render('user/login',{title:"Iniciar Sesión"});
 });
 
 router.get('/signin', function(req, res, next) {
-  res.render('user/signin');
+  res.render('user/signin', {title:"Registrarse"});
 });
 
 

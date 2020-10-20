@@ -19,17 +19,10 @@
         
                         <p class="card-text"><small class="text-muted"><%= course.teacher %></small></p>
         
+                        <p class="card-text text-justify"><%= course.shortDescription %></p>
+                        <hr>
                         <p class="card-text text-justify"><%= course.description %></p>
-        
-                        <ul>
-                            <li>Caracteristica 1</li>
-                            <li>Caracteristica 2</li>
-                            <li>Caracteristica 3</li>
-                            <li>Caracteristica 4</li>
-                            <li>Caracteristica 5</li>
-                            <li>Caracteristica 6</li>
-                            <li>Caracteristica 7</li>
-                        </ul>
+
                     </div>
                     <div class="col-md-5 align-content-end">
                         <% if(course.image != ''){ %>
