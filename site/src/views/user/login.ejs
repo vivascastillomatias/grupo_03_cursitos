@@ -9,8 +9,8 @@
     <%- include('../partials/navbar') %>
     <!-- /Header -->
         <section class="jumbotron container bg-light col-md-3">
-        <form action="" class="" method="post">
-            <h1 class="lead text-center">Bienvenido de nuevo! Iniciá sesión y tené acceso a todos los cursos que ofrecemos en Cursitos.com</h1>
+        <form class="container" action="/users/login" method="POST" enctype="multipart/form-data">
+                <h1 class="lead text-center">Bienvenido de nuevo! Iniciá sesión y tené acceso a todos los cursos que ofrecemos en Cursitos.com</h1>
             <hr class="my-4">
 
             <div class="form-group">
@@ -20,14 +20,13 @@
             <div class="form-group">
                 <button class="btn btn-outline-primary form-control">Inicia sesión con Facebook</button>
             </div>
-
-
             <div class="form-group">
                 <input type="text" name="name" id="name" class="form-control form-control-lg" placeholder="Tu nombre de usuario">
                 <hr>
-                <input type="password" name="name" id="name" class="form-control form-control-lg" placeholder="Tu contraseña">
+                <input type="password" name="passowrd" id="password" class="form-control form-control-lg" placeholder="Tu contraseña">
+                <hr>
+                <input type="checkbox" name="rememberMe" id="rememberMe" class="form-control form-control-lg">Recordarme
             </div>
-
             <hr>
             <div class="row justify-content-center p-2">
                 <button type="submit" href="#" class="btn btn-success col-md-4 m-1">Iniciar sesion</button>

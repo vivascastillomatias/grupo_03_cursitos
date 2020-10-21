@@ -1,29 +1,18 @@
 var express = require('express');
 var router = express.Router();
+const userController = require('../controllers/userController')
 
 /* GET users listing. */
 
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
+router.get('/login', userController.loginView)
 
-router.get('/login', function(req, res, next) {
-  res.render('user/login',{title:"Iniciar Sesión"});
-});
+router.post('/login', userController.processLogin);
 
-router.get('/signin', function(req, res, next) {
-  res.render('user/signin', {title:"Registrarse"});
-});
+router.get('/signin', userController.registerView) 
 
-
-//Get inicio sesion -> devolver pagina
-//post inicio sesion -> validar entrada
-
-//Get registro -> devolver pagina
-//post registro -> registrar un nuevo usuario
+router.post('/signin', userController.processRegister)
 
 //Get Administrar mi perfil -> devolver pagina
-
 
 //PUT modificar datos -> borrar un usuario
 

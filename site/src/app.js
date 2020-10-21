@@ -4,8 +4,8 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const methodOverride = require('method-override')
-
-
+const session = require('express-session')
+const cookie = require('cookie-parser')
 //------------------------- Routers ---------------------------------------
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -25,7 +25,13 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../public')));
 app.use(methodOverride('_method'))
-
+app.set('trust proxy', 1) // trust first proxy
+app.use(session({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: true,
+}))
+app.use(cookie())
 //------------------------- routes ---------------------------------------
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
