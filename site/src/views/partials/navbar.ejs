@@ -1,8 +1,8 @@
 <header>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark text-center">
         <a class="navbar-brand" href="/">
             <img src="/images/logo.png" height="30" alt="" loading="lazy">
-          </a>
+        </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -14,22 +14,34 @@
             </form> -->
 
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="/courses/create">Publica tu curso <span class="sr-only">(current)</span></a>
-                </li>
-            </ul>
+                <% if (logSuccess) { %>
+                    <li class="nav-item">
+                        <a class="nav-link" ><%= userLoged %><span class="sr-only">(current)</span></a>
+                    </li>   
+                    <% } %>
+                </ul>
             <ul class="navbar-nav mr-right">
                 <li class="nav-item">
                     <a class="nav-link" href="/carrito">Carrito <span class="sr-only">
                         <img src="/images/carrito.png" onclick="location.href='/carrito'" alt="" class="cart" />
                     </span></a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/users/signin">Registrate <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/users/login">Iniciar sesión<span class="sr-only">(current)</span></a>
-                </li>
+                <% if (!logSuccess) { %>
+                    <li class="nav-item mr-md-1">
+                        <a class="btn btn-outline-success col-sm-12" href="/users/signin">Signin <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-outline-light col-sm-12"  href="/users/login">Login<span class="sr-only">(current)</span></a>
+                    </li>
+                    <% } else { %>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/courses/create">Publica tu curso <span class="sr-only">(current)</span></a>
+                    </li>
+                    <form class="form-inline" action="/users/logout" method="POST">
+                        <button class="btn btn-outline-light col-sm-12 my-2 my-sm-0" type="submit">Logout</button>
+                    </form>
+                <% } %>
+                 
             </ul>
         </div>
     </nav>

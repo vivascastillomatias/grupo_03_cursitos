@@ -12,6 +12,8 @@ router.get('/signin', userController.registerView)
 
 router.post('/signin', userController.processRegister)
 
+router.post('/logout', userController.logout) 
+
 //Get Administrar mi perfil -> devolver pagina
 
 //PUT modificar datos -> borrar un usuario

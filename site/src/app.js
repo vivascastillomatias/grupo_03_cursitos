@@ -6,6 +6,11 @@ var logger = require('morgan');
 const methodOverride = require('method-override')
 const session = require('express-session')
 const cookie = require('cookie-parser')
+
+const middleSession = require('./middlewares/app/session');
+const log = require('./middlewares/app/log');
+
+
 //------------------------- Routers ---------------------------------------
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -26,11 +31,16 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../public')));
 app.use(methodOverride('_method'))
 app.set('trust proxy', 1) // trust first proxy
+
+
+
 app.use(session({
-  secret: 'keyboard cat',
+  secret: 'cursitos',
   resave: false,
   saveUninitialized: true,
 }))
+app.use(middleSession)
+app.use(log)
 app.use(cookie())
 //------------------------- routes ---------------------------------------
 app.use('/', indexRouter);

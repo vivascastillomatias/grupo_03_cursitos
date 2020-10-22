@@ -17,25 +17,26 @@
             <!-- <div class="row text-center">
                 <h3>La formación profesional en tecnología es cada vez más importante</h3>
             </div> -->
+            <div class="row justify-content-center">
+                <form>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="¿Que deseas aprender?" aria-label="¿Que deseas aprender?" aria-describedby="button-addon2">
+                        <div class="input-group-append">
+                          <button type="submit" class="btn btn-success" type="button" id="button-addon2">Buscar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
             <div class="row">
                 <div class="col-sm-6">
                     <img  class="figure-img img-fluid rounded card-img-top" src="/images/img-banner.jpeg" alt="" srcset="">
                 </div>
                 <div class="col-sm-6">
-                    <form>
-                        <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="¿Que deseas aprender?" aria-label="¿Que deseas aprender?" aria-describedby="button-addon2">
-                            <div class="input-group-append">
-                              <button type="submit" class="btn btn-success" type="button" id="button-addon2">Buscar</button>
-                            </div>
-                          </div>
-                    </form>
-                    <hr>
                     <h3> <span class="badge badge-success display-3"> 70% </span> de los graduados de Cursitos consiguen un empleo en el término de un año</h3>
                     <h3> <span class="display-3 badge badge-success"> 30% </span> crean su propia empresa de tecnología o startup</h3>
                     <hr>
                     <p>Aprendé con nosotros lo ultimo en tecnología, para hacer crecer tu hobbie o formarte profesionalmente</p>
-                    <hr>
+                    
 
                 </div>
             </div>
@@ -74,8 +75,8 @@
             
 
             <% courses.forEach(course=>{%>
-            <div class="col mb-3" onclick="location.href='/courses/detail/<%=course.id%>'">
-                <div class="card text-white bg-dark mb-3" style="min-height: 25rem;">
+            <div class="col mb-3" onclick="location.href='/courses/detail/<%=course.id%>'" >
+                <div class="card text-white bg-dark mb-3" style="min-height: 25rem;cursor: pointer;">
                     <% if(course.image != ''){ %>
                         <img src="/images/products/<%=course.image%>" style="max-height: 20rem;" class="card-img-top" alt="<%=course.image%>">
                     <%}else{ %>

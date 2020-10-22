@@ -8,8 +8,8 @@
     <!-- Header -->
     <%- include('../partials/navbar') %>
     <!-- /Header -->
-    <section class="jumbotron container bg-light col-md-3 text-center">
-        <form action="" class="" method="post">
+    <section class="jumbotron container bg-light col-md-4 text-center">
+        <form class="container" action="/users/signin" method="POST">
             <h1 class="lead text-center">Bienvenido! Registrate y tené acceso <br> a todos los cursos que ofrecemos en Cursitos.com</h1>
             <hr class="my-4">
 
@@ -21,22 +21,22 @@
                 <button class="btn btn-outline-primary form-control">Inicia sesión con Facebook</button>
             </div>
 
-            <form class="container" action="/users/signin" method="POST" enctype="multipart/form-data">
+            
             <div class="form-group">
                 <hr>
-                <input type="text" name="email" id="email" class="form-control form-control-lg" placeholder="Tu email">
+                <input type="text" name="email" id="email" class="form-control form-control-sm" placeholder="Tu email">
                 <hr>
-                <input type="text" name="name" id="name" class="form-control form-control-lg" placeholder="Tu nombre de usuario">
+                <input type="text" name="name" id="name" class="form-control form-control-sm" placeholder="Tu nombre de usuario">
                 <hr>
-                <input type="password" name="password" id="password" class="form-control form-control-lg" placeholder="Tu contraseña">
+                <input type="password" name="password" id="password" class="form-control form-control-sm" placeholder="Tu contraseña">
                 <hr>
-                <input type="password" name="passwordRepeat" id="passwordRepeat" class="form-control form-control-lg" placeholder="Repite tu contraseña">
+                <input type="password" name="passwordRepeat" id="passwordRepeat" class="form-control form-control-sm" placeholder="Repite tu contraseña">
             </div>
 
             <hr>
             <div class="row justify-content-center p-2">
-                <form><button type="submit" href="#" class="btn btn-success col-md-4 m-1">Registrarse</button>
-                <a href="/" class="btn btn-outline-dark col-md-4 m-1">Cancelar</a>
+                <button type="submit" class="btn btn-success col-md-5 m-1">Registrarse</button>
+                <a href="/" class="btn btn-outline-dark col-md-5 m-1">Cancelar</a>
                 <p class="lead">¿Ya tenes una cuenta? <br> Iniciá sesion <a href="/users/login">aquí</a></p>
             </div>
         </form>

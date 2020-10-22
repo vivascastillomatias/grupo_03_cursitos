@@ -7,9 +7,9 @@ const leerJson = () => {
     return JSON.parse(fs.readFileSync(usersFilePath, 'utf-8'));
 }
 
-const grabarJson = (newUser) => {
+const grabarJson = (newUsers) => {
     const usersFilePath = path.join(__dirname, '../data/usersDataBase.json');
-    fs.writeFileSync(usersFilePath, JSON.stringify(newUser))
+    fs.writeFileSync(usersFilePath, JSON.stringify(newUsers))
 }
 
 module.exports = {
@@ -18,6 +18,7 @@ module.exports = {
         console.log('Se accedió a la vista de registro')
     },
     processRegister: (req, res) => {
+        
         let password = bcrypt.hashSync(req.body.password, 10);
         let newUser = {
             email: req.body.email,
@@ -35,13 +36,36 @@ module.exports = {
     },
     processLogin: (req, res) => {
         let users = leerJson();
-        let usuarioEncontrado = users.find(users => users.name == req.body.name);
-    console.log('Se logueó un usuario', usuarioEncontrado);
-    req.session.userName = usuarioEncontrado.name
-    if(req.body.rememberMe){
-        res.cookie('cookie', usuarioEncontrado.name)
-    }
-    res.redirect('/')
+        console.log(req.body)
+        let userEncontrado = users.find(user => user.name == req.body.name);
+
+        if (userEncontrado) {
+            //Existe un usuario
+            console.log('Sesion iniciada con ', userEncontrado)
+            req.session.user = userEncontrado.name;
+
+            if (req.body.rememberMe == 'true') {
+                console.log('SE GUARDA LA COOOKIE')
+                res.cookie('rememberMe', userEncontrado.name, {maxAge: 1000*60*1 })
+            }
+            res.redirect('/')
+
+            // if (userEncontrado.password == bcrypt.hashSync(req.body.password, 10)){
+            //     //Contraseña correcta y se loguea
+            //     //Crear sesion
+            //     console.log('Sesion iniciada con ', userEncontrado)
+            // }else{
+            //     //Contraseña incorrecta y no se debe loguear
+            //     console.log('Contraseña incorrecta pa')
+            // }
+        } else {
+            //No existe nombre de usuario
+            res.redirect('/users/login')
+        }
+    },
+    logout: (req, res) => {
+        req.session.user = '';
+        res.redirect('/')
     }
     }
 
