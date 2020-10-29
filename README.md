@@ -19,9 +19,7 @@ _Nuestro público objetivo son los millennial y centennial, los cuales ya cuenta
 
 ## Autores ✒️
 
-- Losa Franco: de Capital Federal, 27 años. Actualmente cursando tecnicatura en desarrollo web en Unlam.  
-
-- Katz Ian: de Capital Federal, 26 años.
+- Losa Franco: de Capital Federal, 27 años. Actualmente cursando tecnicatura en desarrollo web en Unlam.
 
 - Vivas Castillo Matías: Argentino, Cordobés. 23 años, egresado de colegio técnico en informática, estudiante de Ingeniería en sistemas, apasionado por la tecnología y el desarrollo back-end.
 
