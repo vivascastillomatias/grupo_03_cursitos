@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Head -->
+<%- include('../partials/head') %>
+<!-- /Head -->
+    <body class="bg-dark">
+        <!-- Header -->
+        <%- include('../partials/navbar') %>
+        <!-- /Header -->
+        <section class="jumbotron">
+            <h1 class="display-6 text-center">Modificar datos de <%= user.name %> </h1>
+            <form class="container col-md-5 " method="POST" action="/users/modify/<%= user.id %>" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="name">Nombre de usuario:</label>
+                    <input type="text" name="name" id="name" class="form-control form-control"  placeholder="" value="<%= user.name %>">
+                </div>
+                <div class="form-group">
+                    <label for="name">Nombres:</label>
+                    <input type="text" name="firstName" id="firstName" class="form-control form-control"  placeholder="" value="<%= user.firstName %>">
+                </div>
+                <div class="form-group">
+                    <label for="description">Apellidos:</label>
+                    <input class="form-control" name="lastName" id="lastName" placeholder="." value="<%= user.lastName %>">
+                </div>
+                <div class="form-group">
+                    <label for="description">Email:</label>
+                    <input class="form-control" name="email" id="email" placeholder="." value="<%= user.email %>">
+                </div>
+                <div class="form-group">
+                    <label for="description">Biografía / Presentación</label>
+                    <textarea class="form-control" name="bio" id="bio" placeholder="."><%= user.bio %> </textarea>
+                </div>
+                <% if(user.image){ %>
+                <div class="input-group mb-3">
+                    <div class="col-md-6">
+                        <label for="nameFeatures">Imagen de usuario</label>
+                        <hr>
+                        <img src="/images/users/<%=user.image%>" style="max-height: 20rem;"  alt="<%=user.image%>">
+                    </div>
+                </div>
+                <%}%>
+                                
+
+                <% if(user.image){ %>
+                    <label for="link">cambiá tu foto de perfil:</label>
+                <%}else{ %>
+                    <label for="link">Carga tu foto de perfil:</label>
+                <%}%>
+                <div class="input-group mb-3">
+                    <div class="custom-file">
+                        <input type="file" name="image" id="image" value="" class="custom-file-input" onchange="var a = document.getElementById('fileNameLabel'); a.innerHTML = this.value"
+                        aria-describedby="inputGroupFileAddon01">
+                        <label class="custom-file-label" id="fileNameLabel" for="image"></label>
+                    </div>
+                </div>
+    
+                <div class="row justify-content-center  p-2">
+                    <button type="submit"class="btn btn-success col-md-4 m-1">Guardar</button>
+                    <a href="/" class="btn btn-outline-dark col-md-4 m-1">Cancelar</a>
+                </div>
+    
+              </form>
+        </section>
+        <!-- Footer -->
+        <%- include('../partials/footer') %>
+
+    </body>
+</html>

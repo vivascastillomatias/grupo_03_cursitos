@@ -16,16 +16,28 @@
             <ul class="navbar-nav mr-auto">
                 <% if (logSuccess) { %>
                     <li class="nav-item">
-                        <a class="nav-link" ><%= userLoged %><span class="sr-only">(current)</span></a>
+                        <a class="nav-link" ><%= userLoged.name %><span class="sr-only">(current)</span></a>
                     </li>   
                     <% } %>
                 </ul>
             <ul class="navbar-nav mr-right">
+                <% if (userLoged) { %>
+                    <% if (userLoged.completed) { %>
+                        <li class="nav-item mr-md-1">
+                            <a class="nav-link" href="/users/modify/<%= userLoged.id %>">Modifica tu perfil <span class="sr-only">(current)</span></a>
+                        </li>
+                        <% } else { %>
+                        <li class="nav-item mr-md-1">
+                            <a class="nav-link" href="/users/completeUser/<%= userLoged.id %>">Completá tu perfil <span class="sr-only">(current)</span></a>
+                        </li>
+                    <% } %>
+                <% } %>
                 <li class="nav-item">
                     <a class="nav-link" href="/carrito">Carrito <span class="sr-only">
                         <img src="/images/carrito.png" onclick="location.href='/carrito'" alt="" class="cart" />
                     </span></a>
                 </li>
+
                 <% if (!logSuccess) { %>
                     <li class="nav-item mr-md-1">
                         <a class="btn btn-outline-success col-sm-12" href="/users/signin">Signin <span class="sr-only">(current)</span></a>
