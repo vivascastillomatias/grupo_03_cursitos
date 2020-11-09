@@ -26,4 +26,4 @@ _Aquí se alojaran las retrospectivas que fuimos haciendo con el equipo a lo lar
 
 * Hacer menos:  Hubo errores de interpretación en los objetivos, la especulación sobre no llegar con los objetivos nos provocó de que entreguemos más funcionalidad de la pactada
 
-* Dejar de hacer: Hubo mala comunicación con el participante que abandonó el grupo, por lo cual no pudimos hacer la retrospective del sprint 02, abolir la mala comunicación es la mejor opción para seguir con la entrega continua de funcionalidad
+* Dejar de hacer: Hubo mala comunicación con el participante que abandonó el grupo, por lo cual no pudimos hacer la retrospective del sprint 02, abolir la mala comunicación es la mejor opción para seguir con la entrega continua de funcionalidad. Dejar de instalar módulos como dependencia general del proyecto cuando se deben utilizar sólo como dependencias de desarrollo.

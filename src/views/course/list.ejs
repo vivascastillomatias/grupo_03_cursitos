@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head -->
+<%- include('../partials/head') %>
+<!-- /Head -->
+
+<body class="bg-dark">
+    
+    <!-- Header -->
+	<%- include('../partials/navbar') %>
+    <!-- /Header -->
+    
+
+        <section class="row row-cols-1 row-cols-md-4">
+            
+
+            <% courses.forEach(course=>{%>
+            <div class="col mb-3" onclick="location.href='/courses/<%=course.id%>'" >
+                <div class="card text-white bg-dark mb-3" style="min-height: 25rem;cursor: pointer;">
+                    <% if(course.image != ''){ %>
+                        <img src="/images/products/<%=course.image%>" style="max-height: 20rem;" class="card-img-top" alt="<%=course.image%>">
+                    <%}else{ %>
+                        <img src="https://via.placeholder.com/300x300" style="max-height: 20rem;" class="card-img-top" alt="<%=course.image%>">
+                    <%}%>
+                    <div class="card-body">
+                        <h5 class="card-title"><%=course.name%></h5>
+                        <p class="card-text"><%=course.shortDescription%></p>
+                    </div>
+                </div>
+            </div>
+            <%})%>
+        </section>
+    </section>
+    <!-- Footer -->
+    <%- include('../partials/footer') %>
+    <!-- End footer -->
+
+
+</body>
+
+</html>

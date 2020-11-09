@@ -45,7 +45,7 @@
                 </form>
                 <hr>
                 <form action="/courses/delete/<%=course.id%>?_method=DELETE" method="POST" class="row justify-content-center btn-group-xs p-2">
-                <a href="/courses/detail/modify/<%= course.id %>" class="btn btn-outline-primary col-md-2 m-1">Editar curso</a>
+                <a href="/courses/<%= course.id %>/edit" class="btn btn-outline-primary col-md-2 m-1">Editar curso</a>
                     <input type="submit" class="btn btn-outline-danger col-md-2 m-1" value="Eliminar curso">
                 </form>
         </div>

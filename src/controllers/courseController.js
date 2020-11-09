@@ -17,7 +17,10 @@ const grabarJson = (newCourses) => {
 
 module.exports = {
     all: (req, res) => {
-        res.send('estas viendo todos los articulos del carrito del generador')
+        const coursesFilePath = path.join(__dirname, '../data/coursesDataBase.json');
+        const courses = JSON.parse(fs.readFileSync(coursesFilePath, 'utf-8'));
+        res.render('course/list', {courses: courses, title:"Cursitos"})
+        console.log('Se accedió a la lista de los cursos')
     }, 
     detail: (req, res) => {
 
@@ -48,7 +51,7 @@ module.exports = {
         }
         var newCourses = [...courses, newCourse];
         grabarJson(newCourses);
-        let ruta = '/courses/detail/'+id;
+        let ruta = '/courses/'+id;
 		res.redirect(ruta);
     } ,
     delete: (req, res) => {
@@ -83,7 +86,7 @@ module.exports = {
 
         courses.splice(index, 1, newCourse);
         grabarJson(courses);
-        let ruta = '/courses/detail/'+id;
+        let ruta = '../courses/'+id;
 		res.redirect(ruta);
     } 
 }

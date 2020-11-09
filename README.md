@@ -16,16 +16,26 @@ _Nuestras principales categorías son:_
 
 _Nuestro público objetivo son los millennial y centennial, los cuales ya cuentan con un conocimiento base que les facilitará esta la cursada online. Sin embargo, cualquier persona tendrá la facilidad para aprender con nuestros cursos._
 
+## Iniciar aplicación
+
+1. Git Clone: https://github.com/vivascastillomatias/grupo_03_cursitos
+2. Situarse en la raíz del proyecto.
+3. Ejercutar el comando "npm install".
+4. Ejercutar el comando "npm start".
 
 ## Autores ✒️
 
 - Losa Franco: de Capital Federal, 27 años. Actualmente cursando tecnicatura en desarrollo web en Unlam.
 
+    - LinkedIn: www.linkedin.com/in/francolosa
+    -   Email: franconicolaslosa@gmail.com
+
+
 - Vivas Castillo Matías: Argentino, Cordobés. 23 años, egresado de colegio técnico en informática, estudiante de Ingeniería en sistemas, apasionado por la tecnología y el desarrollo back-end.
 
-    -LinkedIn: https://www.linkedin.com/in/vivascastillomatias/
+    -   LinkedIn: https://www.linkedin.com/in/vivascastillomatias/
 
-    -Email: mativivas77@gmail.com
+    -   Email: mativivas77@gmail.com
 
 ## Proceso de construcción
 

@@ -75,7 +75,7 @@
             
 
             <% courses.forEach(course=>{%>
-            <div class="col mb-3" onclick="location.href='/courses/detail/<%=course.id%>'" >
+            <div class="col mb-3" onclick="location.href='/courses/<%=course.id%>'" >
                 <div class="card text-white bg-dark mb-3" style="min-height: 25rem;cursor: pointer;">
                     <% if(course.image != ''){ %>
                         <img src="/images/products/<%=course.image%>" style="max-height: 20rem;" class="card-img-top" alt="<%=course.image%>">
