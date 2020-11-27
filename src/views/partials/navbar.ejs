@@ -12,28 +12,17 @@
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </form> -->
-            <ul>
-
-            </ul>
             <ul class="navbar-nav mr-auto">
-                <% if (logSuccess) { %>
-                    <li class="nav-item">
-                        <a class="nav-link" ><%= userLoged.name %><span class="sr-only">(current)</span></a>
-                    </li>   
-                    <% } %>
-                </ul>
+                <form >
+                    <div class="input-group" style="width: 160%;">
+                        <input type="text" class="form-control" placeholder="¿Que deseas aprender?" aria-label="¿Que deseas aprender?" aria-describedby="button-addon2">
+                        <div class="input-group-append">
+                          <button type="submit" class="btn btn-success" type="button" id="button-addon2">Buscar</button>
+                        </div>
+                    </div>
+                </form>
+            </ul>
             <ul class="navbar-nav mr-right">
-                <% if (userLoged) { %>
-                    <% if (userLoged.completed) { %>
-                        <li class="nav-item mr-md-1">
-                            <a class="nav-link" href="/users/modify/<%= userLoged.id %>">Modifica tu perfil <span class="sr-only">(current)</span></a>
-                        </li>
-                        <% } else { %>
-                        <li class="nav-item mr-md-1">
-                            <a class="nav-link" href="/users/completeUser/<%= userLoged.id %>">Completá tu perfil <span class="sr-only">(current)</span></a>
-                        </li>
-                    <% } %>
-                <% } %>
                 <li class="nav-item">
                     <a class="nav-link" href="/carrito">Carrito <span class="sr-only">
                         <img src="/images/carrito.png" onclick="location.href='/carrito'" alt="" class="cart" />
@@ -55,9 +44,27 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/courses/create">Publica tu curso <span class="sr-only">(current)</span></a>
                     </li>
-                    <form class="form-inline" action="/users/logout" method="POST">
-                        <button class="btn btn-outline-light col-sm-12 my-2 my-sm-0" type="submit">Logout</button>
-                    </form>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="option-session" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <%= userLoged.user %>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="option-session">
+                           
+                            <% if (userLoged.completed) { %>
+                                    <a class="dropdown-item" href="/users/modify/<%= userLoged.id %>">Modifica tu perfil <span class="sr-only">(current)</span></a>
+                                <% } else { %>
+                                    <a class="dropdown-item" href="/users/completeUser/<%= userLoged.id %>">Completá tu perfil <span class="sr-only">(current)</span></a>
+                            <% } %>
+                            <a class="dropdown-item" href="#">Cambiar contraseña</a>
+
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">
+                                <form class="form-inline" action="/users/logout" method="POST">
+                                    <button class="btn btn-outline-dark col-sm-12 my-2 my-sm-0" type="submit">Logout</button>
+                                </form>
+                            </a>
+                        </div>
+                      </li>
                 <% } %>
                  
             </ul>

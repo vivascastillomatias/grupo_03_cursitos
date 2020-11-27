@@ -8,19 +8,19 @@
         <%- include('../partials/navbar') %>
         <!-- /Header -->
         <section class="jumbotron">
-            <h1 class="display-6 text-center">Modificar datos de <%= user.name %> </h1>
+            <h1 class="display-6 text-center">Modificar datos de <%= user.user %> </h1>
             <form class="container col-md-5 " method="POST" action="/users/modify/<%= user.id %>" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="name">Nombre de usuario:</label>
-                    <input type="text" name="name" id="name" class="form-control form-control"  placeholder="" value="<%= user.name %>">
+                    <input type="text" name="name" id="name" class="form-control form-control"  placeholder="" value="<%= user.user %>">
                 </div>
                 <div class="form-group">
                     <label for="name">Nombres:</label>
-                    <input type="text" name="firstName" id="firstName" class="form-control form-control"  placeholder="" value="<%= user.firstName %>">
+                    <input type="text" name="firstName" id="firstName" class="form-control form-control"  placeholder="" value="<%= user.first_name %>">
                 </div>
                 <div class="form-group">
                     <label for="description">Apellidos:</label>
-                    <input class="form-control" name="lastName" id="lastName" placeholder="." value="<%= user.lastName %>">
+                    <input class="form-control" name="lastName" id="lastName" placeholder="." value="<%= user.last_name %>">
                 </div>
                 <div class="form-group">
                     <label for="description">Email:</label>

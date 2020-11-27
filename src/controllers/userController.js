@@ -1,3 +1,5 @@
+const {User} = require('../database/models');
+
 const fs = require('fs');
 const path = require('path');
 const bcrypt = require('bcryptjs');
@@ -15,105 +17,165 @@ const grabarJson = (newUsers) => {
 module.exports = {
     registerView: (req, res) => {
         res.render('user/signin', {title:"Registrarse"})
-        console.log('Se accedió a la vista de registro')
+        // console.log('Se accedió a la vista de registro')
     },
-    processRegister: (req, res) => {
-        const users = leerJson()
-        let password = bcrypt.hashSync(req.body.password, 10);
+    processRegister: async (req, res) => {
+        try {
+            let password = bcrypt.hashSync(req.body.password, 10);
+            await User.create({
+                user: req.body.name,
+                email: req.body.email,
+                password: password,
+            })
+        } catch (error) {
+            console.log(error)
+        }
 
-        let id = users[users.length-1].id +1;
-        let newUser = {
-            id,
-            completed: false,
-            email: req.body.email,
-            name: req.body.name,
-            password: password,
-                }
-        let newUsers = [...users, newUser]
-        grabarJson(newUsers);
-        res.redirect('login')
-        console.log('Se registró un usuario', newUser)
-    },
-    modifyView: (req, res) => {
-        let users = leerJson();
-        let id = req.params.id
-        let user = users.find(e => e.id == id)
-        res.render('user/modify', {title:"Modificá tu perfil", user})
-    },
-    modify: (req, res) => {
-        let users = leerJson();
-        let id =req.params.id 
-        let index = users.findIndex(e => e.id == id)
+        //-----------------
 
-        let fileName;
-        req.file ?  fileName = req.file.filename : fileName = users[index].image;
+        // const users = leerJson()
+        // let password = bcrypt.hashSync(req.body.password, 10);
 
+        // let id = users[users.length-1].id +1;
+        // let newUser = {
+        //     id,
+        //     completed: false,
+        //     email: req.body.email,
+        //     name: req.body.name,
+        //     password: password,
+        //         }
+        // let newUsers = [...users, newUser]
+        // grabarJson(newUsers);
+        // console.log('Se registró un usuario', newUser)
         
-        let newUser = { id, image: fileName, ...req.body};
-
-        users.splice(index, 1, newUser);
-        grabarJson(users);
+        //--------------------------------------
+        res.redirect('login')
+    },
+    modifyView: async(req, res) => {
+        // let users = leerJson();
+        // let id = req.params.id
+        // let user = users.find(e => e.id == id)
+        try {
+            let user = await User.findByPk(req.params.id)
+            res.render('user/modify', {title:"Modificá tu perfil", user})
+        } catch (error) {
+            console.log(error)
+        }
+    },
+    modify: async(req, res) => {
+        try {
+            let fileName;
+            req.file ?  fileName = req.file.filename : fileName = ''
+            await User.update({
+                email: req.body.email,
+                first_name: req.body.firstName,
+                last_name: req.body.lastName,
+                image: fileName,
+                bio: req.body.bio,
+                completed: 1,
+            },
+            {   where: {
+                id: req.params.id
+            }}
+            )
+            res.redirect('/')
+        } catch (error) { console.log(error) }
         let ruta = '/users/modify/'+id;
 		res.redirect(ruta);
     },
-    completeUserView: (req, res) => {
-        let users = leerJson();
-        let id = req.params.id
-        let user = users.find(e => e.id == id)
-        if (!user.completed) {
-            res.render('user/completeUser', {title:"Completa tu perfil", user})
-        } else {
-            res.redirect("/")
-        }  
-        console.log('Se accedió a la vista de registro')
-    },
-    completeUser: (req, res) => {
-        let users = leerJson();
-        let id =req.params.id 
-        let index = users.findIndex(e => e.id == id)
+    completeUserView: async (req, res) => {
+        // let users = leerJson();
+        // let id = req.params.id
+        // let user = users.find(e => e.id == id)
 
-        let fileName;
-        req.file ?  fileName = req.file.filename : fileName = ''
+        try {
+            let user = await User.findOne({
+                where: { 
+                    id: req.params.id
+                }
+            })
+            if (!user.completed) {
+                res.render('user/completeUser', {title:"Completa tu perfil", user})
+            } else {
+                res.redirect("/")
+            }
+        } catch (error) {
+            console.log(error)
+        }
+        // console.log('Se accedió a la vista de registro')
+    },
+    completeUser: async (req, res) => {
+        try {
+            let fileName;
+            req.file ?  fileName = req.file.filename : fileName = ''
+            await User.update({
+                email: req.body.email,
+                first_name: req.body.firstName,
+                last_name: req.body.lastName,
+                image: fileName,
+                bio: req.body.bio,
+                completed: 1,
+            },
+            {   where: {
+                id: req.params.id
+            }}
+            )
+            res.redirect('/')
+        } catch (error) { console.log(error) }
+        
+        // let users = leerJson();
+        // let id =req.params.id 
+        // let index = users.findIndex(e => e.id == id)
+        
+        // let fileName;
+        // req.file ?  fileName = req.file.filename : fileName = ''
 
         
-        let userCompleted = { ...users[index],completed:true, image: fileName, ...req.body};
-        console.log(userCompleted)
+        // let userCompleted = { ...users[index],completed:true, image: fileName, ...req.body};
+        // console.log(userCompleted)
 
-        users.splice(index, 1, userCompleted);
-        grabarJson(users);
-		res.redirect("/");
+        // users.splice(index, 1, userCompleted);
+        // grabarJson(users);
     },
     loginView: (req, res) => {
         res.render('user/login', {title:"Loguearse"})
         console.log('Se accedió a la vista de login')
     },
-    processLogin: (req, res) => {
-        let users = leerJson();
-        console.log(req.body)
-        let userEncontrado = users.find(user => user.name == req.body.name);
-
-        if (userEncontrado) {
-            //Existe un usuario
-            console.log('Sesion iniciada con ', userEncontrado)
-            req.session.user = {name: userEncontrado.name,id: userEncontrado.id,completed: userEncontrado.completed};
-
-            if (req.body.rememberMe == 'true') {
-                console.log('SE GUARDA LA COOOKIE')
-                res.cookie('rememberMe', userEncontrado.name, {maxAge: 1000*60*1 })
+    processLogin: async(req, res) => {
+        // let users = leerJson();
+        // let userEncontrado = users.find(user => user.name == req.body.name);
+        let userEncontrado;
+        try {
+            userEncontrado = await User.findOne({
+                where: { 
+                    user: req.body.user
+                }
+            })
+            if (userEncontrado) {
+                //Existe un usuario
+                console.log('Sesion iniciada con ', userEncontrado)
+                req.session.user = {user: userEncontrado.user,id: userEncontrado.id,completed: userEncontrado.completed};
+    
+                if (req.body.rememberMe == 'true') {
+                    console.log('SE GUARDA LA COOOKIE')
+                    res.cookie('rememberMe', userEncontrado.user, {maxAge: 1000*60*1 })
+                }
+                res.redirect('/')
+    
+                // if (userEncontrado.password == bcrypt.hashSync(req.body.password, 10)){
+                //     //Contraseña correcta y se loguea
+                //     //Crear sesion
+                //     console.log('Sesion iniciada con ', userEncontrado)
+                // }else{
+                //     //Contraseña incorrecta y no se debe loguear
+                //     console.log('Contraseña incorrecta pa')
+                // }
+            } else {
+                //No existe nombre de usuario
+                res.redirect('/users/login')
             }
-            res.redirect('/')
-
-            // if (userEncontrado.password == bcrypt.hashSync(req.body.password, 10)){
-            //     //Contraseña correcta y se loguea
-            //     //Crear sesion
-            //     console.log('Sesion iniciada con ', userEncontrado)
-            // }else{
-            //     //Contraseña incorrecta y no se debe loguear
-            //     console.log('Contraseña incorrecta pa')
-            // }
-        } else {
-            //No existe nombre de usuario
-            res.redirect('/users/login')
+        } catch (error) {
+            console.log(error)
         }
     },
     logout: (req, res) => {
