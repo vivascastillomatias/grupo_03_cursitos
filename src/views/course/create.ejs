@@ -16,8 +16,8 @@
                     <input type="text" name="name" id="name" class="form-control form-control-lg" placeholder="">
                 </div>
                 <div class="form-group">
-                    <label for="description">Descripcion corta del curso</label>
-                    <input class="form-control" name="shortDescription" id="description" name="textarea" placeholder=".">
+                    <label for="short_description">Descripcion corta del curso</label>
+                    <input class="form-control" name="short_description" id="short_description" name="textarea" placeholder=".">
                 </div>
                 <div class="form-group">
                     <label for="description">Descripcion completa del curso</label>
@@ -26,13 +26,10 @@
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="category">Categoría</label>
-                        <select  name="category" id="category" class="form-control">
-                        <option selected>Elige una categoría</option>
-                        <option value="Programacion front-end">Programacion front-end</option>
-                        <option value="Programacion back-end">Programacion back-end</option>
-                        <option value="Marketing Digital">Marketing Digital</option>
-                        <option value="Edición multimedia">Edición multimedia</option>
-                        <option value="Negocios, inversiones, trading">Negocios, inversiones, trading</option>
+                        <select name="category" id="category" class="form-control">
+                            <% for(var i=0;i<category.length;i++){ %>
+                        <option value="<%=[i]%>"><%= category[i].name %></option>
+                            <% } %> 
                         </select>
                     </div>
                     <div class="form-group col-md-6">

@@ -32,7 +32,7 @@ router.get('/:id', courseController.detail)
 router.delete('/delete/:id', courseController.delete)
 
 //delete borrar -> borrar un curso
-router.delete('/:id', courseController.deleteAndStay)
+// router.delete('/:id', courseController.deleteAndStay)
 
 //Get modificar un curso -> devolver pagina
 router.get('/:id/edit', courseController.modifyView)

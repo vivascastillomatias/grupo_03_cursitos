@@ -36,12 +36,9 @@
                     <div class="form-group col-md-6">
                         <label for="category">Categoría</label>
                         <select name="category" id="category" class="form-control">
-                        <option value="<%= course.category %>">Elige una categoría</option>
-                        <option value="Programacion front-end">Programacion front-end</option>
-                        <option value="Programacion back-end">Programacion back-end</option>
-                        <option value="Marketing Digital">Marketing Digital</option>
-                        <option value="Edición multimedia">Edición multimedia</option>
-                        <option value="Negocios, inversiones, trading">Negocios, inversiones, trading</option>
+                            <% for(var i=0;i<category.length;i++){ %>
+                        <option value="<%=[i]%>"><%= category[i].name %></option>
+                            <% } %> 
                         </select>
                         <label for="price">Precio</label>
                         <div class="input-group mb-3">
