@@ -67,11 +67,12 @@ module.exports = {
                 owner: user.id            
             })
         let ruta = '/courses/'+req.body.id;
+        console.log('Se creó un nuevo curso')
 		res.redirect(ruta);
         } catch (error) {
             console.log(error)
         }
-        console.log('Se creó un nuevo curso')
+        
 
         // * BASE DE DATOS EN JSON * //
         // let courses = leerJson();
@@ -128,6 +129,7 @@ module.exports = {
     },
     modify: async (req, res) => {
         // * BASE DE DATOS EN SQL * //
+        console.log(req.params.id)
         try {
             let user = req.session.user;
             const updateCourse = await Course.update({
@@ -138,17 +140,20 @@ module.exports = {
                 price: req.body.price,
                 discount: req.body.discount,
                 link: req.body.link,
-                owner: user.id
             },
             {
                 where: {
                     id: req.params.id
                 }
             }) 
+            
+            let ruta = '../courses/'+req.params.id;
+            res.redirect(ruta);
+            console.log('Se modificó un curso')
         } catch (error){
             console.log(error)
         }
-        console.log('Se modificó un curso')
+
         // * BASE DE DATOS EN JSON * //
         // let courses = leerJson();
         // let id =req.params.id 
@@ -158,7 +163,5 @@ module.exports = {
         // let newCourse = { id, image: fileName, ...req.body};
         //  courses.splice(index, 1, newCourse);
         // grabarJson(courses);
-        // let ruta = '../courses/'+id;
-		// res.redirect(ruta);
     } 
 }

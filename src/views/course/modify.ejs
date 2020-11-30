@@ -37,7 +37,7 @@
                         <label for="category">Categoría</label>
                         <select name="category" id="category" class="form-control">
                             <% for(var i=0;i<category.length;i++){ %>
-                        <option value="<%=[i]%>"><%= category[i].name %></option>
+                        <option value="<%= category[i].id  %>"><%= category[i].name %></option>
                             <% } %> 
                         </select>
                         <label for="price">Precio</label>
