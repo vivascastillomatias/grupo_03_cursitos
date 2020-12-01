@@ -11,6 +11,7 @@ module.exports = ( sequelize, DataTypes ) => {
             price: DataTypes.FLOAT,
             discount: DataTypes.FLOAT,
             link: DataTypes.STRING,
+            image: DataTypes.STRING,
             owner: DataTypes.INTEGER,
         })
         // Course.associate = models => {

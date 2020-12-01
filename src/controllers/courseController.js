@@ -36,10 +36,11 @@ module.exports = {
         try {
             const courseDetail = await Course.findByPk(req.params.id)
             res.render('course/detail', {title:"Detalle de "+courseDetail.name, course: courseDetail})
+            console.log('Se accedió al detalle de un curso')
         } catch (error) {
             console.log(error)
         }
-        console.log('Se accedió al detalle de un curso')
+
         // * BASE DE DATOS JSON * //
         // const courses = leerJson();
         // let id = req.params.id
@@ -52,10 +53,9 @@ module.exports = {
         const category = await Categorie.findAll()
         res.render('course/create',{title:"Publica tu curso!", category: category})
     } ,
-    store: async (req, res) => {
+    store: async (req, res, next) => {
         // * BASE DE DATOS SQL * //
         try {
-            let user = req.session.user
             const newCourse = await Course.create({
                 name: req.body.name,
                 short_description: req.body.short_description,
@@ -64,9 +64,10 @@ module.exports = {
                 price: req.body.price,
                 discount: req.body.discount,
                 link: req.body.link,
-                owner: user.id            
+                image: req.file.filename,
+                owner: req.session.user.id           
             })
-        let ruta = '/courses/'+req.body.id;
+        let ruta = '/courses/'+newCourse.id;
         console.log('Se creó un nuevo curso')
 		res.redirect(ruta);
         } catch (error) {
@@ -127,11 +128,10 @@ module.exports = {
         // let course = courses.find(e => e.id == id)
         // res.render('course/modify', {course, title:"Detalle de Curso "+id})
     },
-    modify: async (req, res) => {
+    modify: async (req, res, next) => {
         // * BASE DE DATOS EN SQL * //
         console.log(req.params.id)
         try {
-            let user = req.session.user;
             const updateCourse = await Course.update({
                 name: req.body.name,
                 short_description: req.body.short_description,
@@ -140,6 +140,7 @@ module.exports = {
                 price: req.body.price,
                 discount: req.body.discount,
                 link: req.body.link,
+                image: req.file.filename,
             },
             {
                 where: {

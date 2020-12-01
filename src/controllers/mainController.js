@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const { Course } = require("../database/models/")
-
+const session = require('express-session')
 // const coursesFilePath = path.join(__dirname, '../data/coursesDataBase.json');
 // const courses = JSON.parse(fs.readFileSync(coursesFilePath, 'utf-8'));
 
