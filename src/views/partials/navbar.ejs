@@ -49,22 +49,25 @@
                             <%= userLoged.user %>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="option-session">
-                           
+                            <a href="#" class="dropdown-item align-content-center">
+                                <img src="/images/users/<%=userLoged.image%>" width="100%" class="rounded-circle" alt="<%=userLoged.image%>">
+                            </a>
+                            <hr>
                             <% if (userLoged.completed) { %>
                                     <a class="dropdown-item" href="/users/modify/<%= userLoged.id %>">Modifica tu perfil <span class="sr-only">(current)</span></a>
                                 <% } else { %>
                                     <a class="dropdown-item" href="/users/completeUser/<%= userLoged.id %>">Completá tu perfil <span class="sr-only">(current)</span></a>
                             <% } %>
-                            <a class="dropdown-item" href="#">Cambiar contraseña</a>
+                            <a class="dropdown-item" href="/users/modifyPassword/<%= userLoged.id %>">Cambiar contraseña</a>
 
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#">
                                 <form class="form-inline" action="/users/logout" method="POST">
-                                    <button class="btn btn-outline-dark col-sm-12 my-2 my-sm-0" type="submit">Logout</button>
+                                    <button class="btn btn-outline-danger col-sm-12 my-2 my-sm-0" type="submit">Logout</button>
                                 </form>
                             </a>
                         </div>
-                      </li>
+                    </li>
                 <% } %>
                  
             </ul>

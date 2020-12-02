@@ -35,12 +35,13 @@ router.get('/modify/:id', userController.modifyView)
 
 router.post('/modify/:id',upload.single('image'), userController.modify)
 
+//Modificar contraseña usuario
+router.get('/modifyPassword/:id', userController.modifyPasswordView) 
 
+router.post('/modifyPassword/:id',upload.single('image'), userController.modifyPassword)
+
+//Cerrar sesión
 router.post('/logout', userController.logout) 
-
-//Get Administrar mi perfil -> devolver pagina
-
-//PUT modificar datos -> borrar un usuario
 
 //delete borrar -> darse de baja
 
