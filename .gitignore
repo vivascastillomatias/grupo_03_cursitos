@@ -1,7 +1,5 @@
 /node_modules
-/site/node_modules
-/.vs
+src/database/config/config.js
 .vs
 .DS_Store
 .jshintrc
-src/database/config/config.js

@@ -118,24 +118,12 @@ module.exports = {
             },
             {   where: {
                 id: req.params.id
-            }}
-            )
+            }})
+
+            let userEncontrado = await User.findByPk(req.params.id)
+            req.session.user = {user: userEncontrado.user,id: userEncontrado.id,completed: userEncontrado.completed, image: userEncontrado.image};
             res.redirect('/')
         } catch (error) { console.log(error) }
-        
-        // let users = leerJson();
-        // let id =req.params.id 
-        // let index = users.findIndex(e => e.id == id)
-        
-        // let fileName;
-        // req.file ?  fileName = req.file.filename : fileName = ''
-
-        
-        // let userCompleted = { ...users[index],completed:true, image: fileName, ...req.body};
-        // console.log(userCompleted)
-
-        // users.splice(index, 1, userCompleted);
-        // grabarJson(users);
     },
     loginView: (req, res) => {
         res.render('user/login', {title:"Loguearse"})
@@ -154,7 +142,7 @@ module.exports = {
             if (userEncontrado) {
                 //Existe un usuario
                 console.log('Sesion iniciada con ', userEncontrado)
-                req.session.user = {user: userEncontrado.user,id: userEncontrado.id,completed: userEncontrado.completed};
+                req.session.user = {user: userEncontrado.user,id: userEncontrado.id,completed: userEncontrado.completed, image: userEncontrado.image};
     
                 if (req.body.rememberMe == 'true') {
                     console.log('SE GUARDA LA COOOKIE')
@@ -181,6 +169,28 @@ module.exports = {
     logout: (req, res) => {
         req.session.user = '';
         res.redirect('/')
+    },
+    modifyPasswordView: (req, res)=> {
+        res.render('user/modifyPassword', {title:"Cambiar contraseña"})
+    },
+    modifyPassword: async(req, res)=> {
+        try {
+            //Controlar que las contraseñas sean iguales y que la anterior sea correcta
+            if (req.body.passwordNewRepeat === req.body.passwordNew) {
+                await User.update({
+                    password: req.body.passwordNew
+                },
+                {   where: {
+                    id: req.params.id
+                }})
+                res.redirect('/')
+            } else {
+                console.log('No se puede cambiar la contraseña')
+            }
+            
+        } catch (error) {
+            console.log(error)
+        }
     }
     }
 
