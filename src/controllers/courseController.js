@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const { brotliDecompressSync } = require('zlib');
 const { Course, Categorie, Sequelize } = require("../database/models/")
+const Op = Sequelize.Op
 const session = require('express-session')
 
 // const leerJson = () => {
@@ -30,7 +31,24 @@ module.exports = {
         // const courses = JSON.parse(fs.readFileSync(coursesFilePath, 'utf-8'));
         // res.render('course/list', {courses: courses, title:"Cursitos"})
         // console.log('Se accedió a la lista de los cursos')
-    }, 
+    },
+    search: async (req,res) => {
+        try {
+            const search = await Course.findAll({
+                where: {
+                    name: { [Op.like]: '%'+req.body.search+'%'  }
+                },
+                order: ['name']
+            }) 
+            console.log(search)
+
+            res.render('course/list',{title:"Resultado de la Búsqueda", courses: search})
+
+        } catch (error) {
+            console.log(error)
+        }
+        console.log("Se realizó una búsqueda")
+    } ,
     detail: async (req, res) => {
         // * BASE DE DATOS SQL * //
         try {

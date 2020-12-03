@@ -28,6 +28,9 @@ router.post('/',upload.single('image'), courseController.store)
 //Get Ver detalle de curso
 router.get('/:id', courseController.detail)
 
+//POST buscar curso
+router.post('/search', courseController.search)
+
 //Get borrar un curso -> devolver pagina
 router.delete('/delete/:id', courseController.delete)
 
