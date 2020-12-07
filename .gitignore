@@ -3,3 +3,4 @@ src/database/config/config.js
 .vs
 .DS_Store
 .jshintrc
+/src/database/config/config.js

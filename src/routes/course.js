@@ -3,8 +3,18 @@ var router = express.Router();
 const multer = require('multer');
 const path = require('path');
 const courseController = require('../controllers/courseController')
+const session = require('express-session');
+const { nextTick } = require('process');
 
-
+var logged = function(req,res,next){
+    let id = req.session.user
+    if(id){
+        next()
+    } else {
+        res.render('user/signin', {title:"Registrarse"})
+    }
+    
+}
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, path.join(__dirname, '../../public/images/products'))
@@ -20,7 +30,7 @@ var upload = multer({ storage: storage })
 router.get('/', courseController.all)
 
 //Get registro curso -> devolver pagina
-router.get('/create', courseController.create)
+router.get('/create', logged, courseController.create)
 
 //post registro -> registrar un nuevo curso
 router.post('/',upload.single('image'), courseController.store)
@@ -32,13 +42,13 @@ router.get('/:id', courseController.detail)
 router.post('/search', courseController.search)
 
 //Get borrar un curso -> devolver pagina
-router.delete('/delete/:id', courseController.delete)
+router.delete('/delete/:id', logged, courseController.delete)
 
 //delete borrar -> borrar un curso
 // router.delete('/:id', courseController.deleteAndStay)
 
 //Get modificar un curso -> devolver pagina
-router.get('/:id/edit', courseController.modifyView)
+router.get('/:id/edit', logged, courseController.modifyView)
 
 //PUT modificar -> modificar un curso
 router.put('/:id',upload.single('image'), courseController.modify)
