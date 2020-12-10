@@ -136,28 +136,26 @@ module.exports = {
         try {
             userEncontrado = await User.findOne({
                 where: { 
-                    user: req.body.user
+                    email: req.body.email
                 }
             })
             if (userEncontrado) {
                 //Existe un usuario
-                console.log('Sesion iniciada con ', userEncontrado)
-                req.session.user = {user: userEncontrado.user,id: userEncontrado.id,completed: userEncontrado.completed, image: userEncontrado.image};
-    
-                if (req.body.rememberMe == 'true') {
-                    console.log('SE GUARDA LA COOOKIE')
-                    res.cookie('rememberMe', userEncontrado.user, {maxAge: 1000*60*1 })
-                }
-                res.redirect('/')
-    
-                // if (userEncontrado.password == bcrypt.hashSync(req.body.password, 10)){
-                //     //Contraseña correcta y se loguea
-                //     //Crear sesion
-                //     console.log('Sesion iniciada con ', userEncontrado)
-                // }else{
-                //     //Contraseña incorrecta y no se debe loguear
-                //     console.log('Contraseña incorrecta pa')
-                // }
+                bcrypt.compare(req.body.password, userEncontrado.password, function(err, result) {
+                    if (result) {
+                        // ------------------PASSWORD CORRECTA----------------
+                        req.session.user = {user: userEncontrado.user,id: userEncontrado.id,completed: userEncontrado.completed, image: userEncontrado.image};
+            
+                        if (req.body.rememberMe == 'true') {
+                            console.log('SE GUARDA LA COOOKIE')
+                            res.cookie('rememberMe', userEncontrado.user, {maxAge: 1000*60*1 })
+                        }
+                        res.redirect('/')
+                    } else {
+                        // ------------------PASSWORD INCORRECTA----------------
+                        res.redirect('/users/login')
+                    }
+                });
             } else {
                 //No existe nombre de usuario
                 res.redirect('/users/login')
@@ -176,17 +174,44 @@ module.exports = {
     modifyPassword: async(req, res)=> {
         try {
             //Controlar que las contraseñas sean iguales y que la anterior sea correcta
-            if (req.body.passwordNewRepeat === req.body.passwordNew) {
-                await User.update({
-                    password: req.body.passwordNew
-                },
-                {   where: {
-                    id: req.params.id
-                }})
-                res.redirect('/')
+
+            userEncontrado = await User.findOne({
+                where: { 
+                    id: req.session.user.id
+                }
+            })
+            if (userEncontrado) {
+                //Existe un usuario
+                bcrypt.compare(req.body.passwordOld, userEncontrado.password, function (err, result) {
+                    if (result) {
+                        // ------------------PASSWORD CORRECTA----------------
+                        console.log('CAMBIAR CONTRASEÑA')
+                        let password = bcrypt.hashSync(req.body.passwordNew, 10);
+                        if (req.body.passwordNewRepeat === req.body.passwordNew) {
+                            User.update({
+                                password: password
+                            },
+                            {   where: {
+                                id: req.session.user.id
+                            }})
+                            res.redirect('/')
+                        } else {
+                            console.log('No se puede cambiar la contraseña')
+                            res.redirect('/')
+                        }
+
+                    } else {
+                        // ------------------PASSWORD INCORRECTA----------------
+                        console.log('NO CAMBIAR CONTRASEÑA')
+                    }
+                });
             } else {
-                console.log('No se puede cambiar la contraseña')
+                //No existe nombre de usuario
+                res.redirect('/users/login')
             }
+
+            //-------------------------------------------------
+
             
         } catch (error) {
             console.log(error)
