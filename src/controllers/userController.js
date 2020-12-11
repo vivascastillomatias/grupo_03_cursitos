@@ -30,25 +30,6 @@ module.exports = {
         } catch (error) {
             console.log(error)
         }
-
-        //-----------------
-
-        // const users = leerJson()
-        // let password = bcrypt.hashSync(req.body.password, 10);
-
-        // let id = users[users.length-1].id +1;
-        // let newUser = {
-        //     id,
-        //     completed: false,
-        //     email: req.body.email,
-        //     name: req.body.name,
-        //     password: password,
-        //         }
-        // let newUsers = [...users, newUser]
-        // grabarJson(newUsers);
-        // console.log('Se registró un usuario', newUser)
-        
-        //--------------------------------------
         res.redirect('login')
     },
     modifyView: async(req, res) => {
