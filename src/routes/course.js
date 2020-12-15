@@ -5,16 +5,10 @@ const path = require('path');
 const courseController = require('../controllers/courseController')
 const session = require('express-session');
 const { nextTick } = require('process');
+const logged = require('../middlewares/route/courseRoutes')
+const validator = require('../middlewares/route/courseValidator');
 
-var logged = function(req,res,next){
-    let id = req.session.user
-    if(id){
-        next()
-    } else {
-        res.render('user/signin', {title:"Registrarse"})
-    }
-    
-}
+   
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, path.join(__dirname, '../../public/images/products'))
@@ -33,7 +27,7 @@ router.get('/', courseController.all)
 router.get('/create', logged, courseController.create)
 
 //post registro -> registrar un nuevo curso
-router.post('/',upload.single('image'), courseController.store)
+router.post('/',upload.single('image'), validator.createCourse, courseController.store)
 
 //Get Ver detalle de curso
 router.get('/:id', courseController.detail)
@@ -51,6 +45,6 @@ router.delete('/delete/:id', logged, courseController.delete)
 router.get('/:id/edit', logged, courseController.modifyView)
 
 //PUT modificar -> modificar un curso
-router.put('/:id',upload.single('image'), courseController.modify)
+router.put('/:id',upload.single('image'), validator.createCourse, courseController.modify)
 
 module.exports = router;

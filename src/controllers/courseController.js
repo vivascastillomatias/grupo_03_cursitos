@@ -53,6 +53,7 @@ module.exports = {
         // * BASE DE DATOS SQL * //
         try {
             const courseDetail = await Course.findByPk(req.params.id)
+
             res.render('course/detail', {title:"Detalle de "+courseDetail.name, course: courseDetail})
             console.log('Se accedió al detalle de un curso')
         } catch (error) {
@@ -74,6 +75,8 @@ module.exports = {
     store: async (req, res, next) => {
         // * BASE DE DATOS SQL * //
         try {
+            let fileName;
+            req.file ?  fileName = req.file.filename : fileName = ''
             const newCourse = await Course.create({
                 name: req.body.name,
                 short_description: req.body.short_description,
@@ -82,7 +85,7 @@ module.exports = {
                 price: req.body.price,
                 discount: req.body.discount,
                 link: req.body.link,
-                image: req.file.filename,
+                image: fileName,
                 owner: req.session.user.id           
             })
         let ruta = '/courses/'+newCourse.id;
@@ -150,6 +153,8 @@ module.exports = {
         // * BASE DE DATOS EN SQL * //
         console.log(req.params.id)
         try {
+            let fileName;
+            req.file ?  fileName = req.file.filename : fileName = ''
             const updateCourse = await Course.update({
                 name: req.body.name,
                 short_description: req.body.short_description,
@@ -158,7 +163,7 @@ module.exports = {
                 price: req.body.price,
                 discount: req.body.discount,
                 link: req.body.link,
-                image: req.file.filename,
+                image: fileName,
             },
             {
                 where: {
