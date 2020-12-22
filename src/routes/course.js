@@ -7,7 +7,6 @@ const session = require('express-session');
 const { nextTick } = require('process');
 const logged = require('../middlewares/route/courseRoutes')
 const validator = require('../middlewares/route/courseValidator');
-
    
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -27,7 +26,7 @@ router.get('/', courseController.all)
 router.get('/create', logged, courseController.create)
 
 //post registro -> registrar un nuevo curso
-router.post('/',upload.single('image'), validator.createCourse, courseController.store)
+router.post('/', logged, upload.single('image'), validator.validator, courseController.store)
 
 //Get Ver detalle de curso
 router.get('/:id', courseController.detail)
@@ -45,6 +44,6 @@ router.delete('/delete/:id', logged, courseController.delete)
 router.get('/:id/edit', logged, courseController.modifyView)
 
 //PUT modificar -> modificar un curso
-router.put('/:id',upload.single('image'), validator.createCourse, courseController.modify)
+router.put('/:id', logged, upload.single('image'), validator.validator, courseController.modify)
 
 module.exports = router;

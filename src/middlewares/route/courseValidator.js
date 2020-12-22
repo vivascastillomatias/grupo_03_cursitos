@@ -1,28 +1,20 @@
-const { body, validationResult } = require('express-validator');
+const { body, validationResult  } = require('express-validator');
+
+
 module.exports = {
-    createCourse: [
-        body('name')
-            .notEmpty()
-            .withMessage('El curso debe tener un nombre')
-            .bail()
-            .isLength({max: 100})
-            .withMessage('El nombre no puede tener más de 100 caracteres'),
-        body('description')
-            .notEmpty()
-            .withMessage('El curso debe tener una descripción')
-            .isLength({max:500})
-            .withMessage('La descripción no puede tener mas de 500 caracteres'),
-        body('category')
-            .notEmpty()
-            .withMessage('Debes seleccionar una categoría'),
-        body('price')
-            .notEmpty()
-            .withMessage('Debes insertar un precio')
-            .bail()
-            .isInt({max:9999999999})
-            .withMessage('El máximo es de 9999999999.'),
-        body('image')
-            .notEmpty()
-            .withMessage('El curso debe tener una imagen')
-    ]
-}
+    validator: [
+    body('name')
+        .isLength({min:10,max:50})
+        .withMessage('El nombre debe tener un minimo de 10 y máximo de 50 caracteres.'),
+    body('description')
+        .isLength({min:10,max:1200})
+        .withMessage('La descripción debe tener un mínimo de 10 y un máximo de 1200 caracteres.'),
+    body('category')
+        .notEmpty()
+        .withMessage('Debes seleccionar una categoría.'),
+    body('price')
+        .notEmpty()
+        .withMessage('Debes ingresar un precio.')
+    
+   
+]}
