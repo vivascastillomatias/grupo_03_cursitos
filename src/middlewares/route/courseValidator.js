@@ -15,6 +15,7 @@ module.exports = {
     body('price')
         .notEmpty()
         .withMessage('Debes ingresar un precio.')
+        .isInt().withMessage('El precio debe ser numérico.')
     
    
 ]}
