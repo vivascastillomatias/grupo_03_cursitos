@@ -3,6 +3,8 @@ const {User} = require('../database/models');
 const fs = require('fs');
 const path = require('path');
 const bcrypt = require('bcryptjs');
+const { validationResult  } = require('express-validator');
+
 
 const leerJson = () => {
 	const usersFilePath = path.join(__dirname, '../data/usersDataBase.json');
@@ -20,6 +22,9 @@ module.exports = {
         // console.log('Se accedió a la vista de registro')
     },
     processRegister: async (req, res) => {
+        let errors = validationResult(req)
+
+        if(errors.isEmpty()){
         try {
             let password = bcrypt.hashSync(req.body.password, 10);
             await User.create({
@@ -31,6 +36,16 @@ module.exports = {
             console.log(error)
         }
         res.redirect('login')
+    } else {
+        try {
+        console.log(errors.errors)
+        res.render('user/signin', {title:"Registrarse", errors: errors.errors});
+        console.log('Se redireccionó a la vista de signin por errores en el formulario');
+        } 
+        catch (error){
+            console.log(error);
+        }
+    }
     },
     modifyView: async(req, res) => {
         // let users = leerJson();
@@ -114,6 +129,9 @@ module.exports = {
         // let users = leerJson();
         // let userEncontrado = users.find(user => user.name == req.body.name);
         let userEncontrado;
+                let errors = validationResult(req)
+
+        if(errors.isEmpty()){
         try {
             userEncontrado = await User.findOne({
                 where: { 
@@ -143,6 +161,17 @@ module.exports = {
             }
         } catch (error) {
             console.log(error)
+        }} else {
+            try {
+                res.render('user/login', {title:"Loguearse", errors: errors.errors})
+                console.log('Se redireccionó a la vista de login por errores en el formulario')
+                console.log(errors.errors)
+            
+                
+            } 
+            catch (error){
+                console.log(error);
+            }
         }
     },
     logout: (req, res) => {
