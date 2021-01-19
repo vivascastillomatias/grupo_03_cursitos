@@ -60,6 +60,7 @@
     </body>
 
     <script>
+        
         function noVacio(e) {
             if (e.value) {
                 e.className += " is-valid";
@@ -87,8 +88,6 @@
         
         window.addEventListener("load", function(){
             
-            let formulario = document.getElementById("form")
-            
             let inputs = document.querySelectorAll("input");
             inputs.forEach(e => {
                 e.addEventListener("click", function(){
@@ -96,15 +95,21 @@
                     this.classList.remove('is-valid');
                 });
             });
+
+
+
+            let formulario = document.getElementById("form")
+            
             //Agregamos el evento para atraparlo
             formulario.addEventListener("submit", function(event){
-            event.preventDefault();
-            let email = document.getElementById("email")
+            event.preventDefault(); //CANCELA LA ACCION QUE REALIZA EL EVENTO
+
+            let email = document.getElementById("email") //Aca cargo el elemento en una variable
             let name = document.getElementById("name")
             let password = document.getElementById("password")
             let passwordRepeat = document.getElementById("passwordRepeat")
 
-            let validacionEmail = noVacio(email);
+            let validacionEmail = noVacio(email); //Aca mando la variable a la funcion
             let validacionName = noVacio(name);
             let validacionPassword = noVacio(password) && noVacio(passwordRepeat) && passwordIguales(password, passwordRepeat)
 
