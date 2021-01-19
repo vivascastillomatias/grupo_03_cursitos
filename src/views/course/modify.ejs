@@ -10,6 +10,16 @@
         <section class="jumbotron">
             <h1 class="display-6 text-center">Modificando <%= course.name %></h1>
             <form class="container" method="POST" action="/courses/<%=course.id%>?_method=PUT" enctype="multipart/form-data">
+                <% if(typeof errors != 'undefined') { %>
+                    <ul class="alert alert-danger">
+                        <% errors.forEach(error => { %>
+                            
+                            <li>
+
+                                <%= error.msg %>
+                            </li>
+                        <% })}; %>
+                    </ul>
                 <div class="form-group">
                     <label for="name">Nombre del curso</label>
                     <input type="text" name="name" id="name" class="form-control form-control-lg"  placeholder="" value="<%= course.name %>">
@@ -83,4 +93,6 @@
         <%- include('../partials/footer') %>
 
     </body>
+    <script src="/javascripts/validacionesNewCourse.js"></script>
+
 </html>

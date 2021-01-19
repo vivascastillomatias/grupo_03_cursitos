@@ -3,6 +3,8 @@ var router = express.Router();
 const multer = require('multer');
 const path = require('path');
 const userController = require('../controllers/userController')
+const validator = require('../middlewares/route/userValidator');
+
 
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -18,12 +20,12 @@ var upload = multer({ storage: storage })
 //Iniciar sesion
 router.get('/login', userController.loginView)
 
-router.post('/login', userController.processLogin);
+router.post('/login', validator.login, userController.processLogin);
 
 //Registrarse
 router.get('/signin', userController.registerView) 
 
-router.post('/signin', userController.processRegister)
+router.post('/signin', validator.signin, userController.processRegister)
 
 //Completar registro
 router.get('/completeUser/:id', userController.completeUserView) 

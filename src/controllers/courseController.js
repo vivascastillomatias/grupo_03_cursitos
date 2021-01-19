@@ -4,6 +4,7 @@ const { brotliDecompressSync } = require('zlib');
 const { Course, Categorie, Sequelize } = require("../database/models/")
 const Op = Sequelize.Op
 const session = require('express-session')
+const { validationResult  } = require('express-validator');
 
 // const leerJson = () => {
 // 	const coursesFilePath = path.join(__dirname, '../data/coursesDataBase.json');
@@ -53,6 +54,7 @@ module.exports = {
         // * BASE DE DATOS SQL * //
         try {
             const courseDetail = await Course.findByPk(req.params.id)
+
             res.render('course/detail', {title:"Detalle de "+courseDetail.name, course: courseDetail})
             console.log('Se accedió al detalle de un curso')
         } catch (error) {
@@ -68,12 +70,28 @@ module.exports = {
     
     },
     create: async (req, res) => {
+        try {
         const category = await Categorie.findAll()
         res.render('course/create',{title:"Publica tu curso!", category: category})
+        } catch (error){
+            console.log(error);
+        }
     } ,
+    // store: (req,res)=> {
+    //     let errores = validationResult(req)
+    //     if(errores.isEmpty()){
+    //         res.send('sin errores')
+    //     } else {res.send('errores')}
+    //     console.log(errores.errors);
+    // },
     store: async (req, res, next) => {
         // * BASE DE DATOS SQL * //
+        let errors = validationResult(req)
+
+        if(errors.isEmpty()){
         try {
+            let fileName;
+            req.file ?  fileName = req.file.filename : fileName = ''
             const newCourse = await Course.create({
                 name: req.body.name,
                 short_description: req.body.short_description,
@@ -82,17 +100,27 @@ module.exports = {
                 price: req.body.price,
                 discount: req.body.discount,
                 link: req.body.link,
-                image: req.file.filename,
+                image: fileName,
                 owner: req.session.user.id           
             })
         let ruta = '/courses/'+newCourse.id;
         console.log('Se creó un nuevo curso')
-		res.redirect(ruta);
-        } catch (error) {
+        res.redirect(ruta);
+        }  
+         catch (error) {
             console.log(error)
+        } 
+    } else {
+        try {
+        const category = await Categorie.findAll()
+        console.log(errors.errors)
+        res.render('course/create', {title:"Publica tu curso!", errors: errors.errors, category: category});
+            
+        } 
+        catch (error){
+            console.log(error);
         }
-        
-
+    }
         // * BASE DE DATOS EN JSON * //
         // let courses = leerJson();
         // let fileName;
@@ -107,7 +135,7 @@ module.exports = {
         // grabarJson(newCourses);
         // let ruta = '/courses/'+id;
 		// res.redirect(ruta);
-    } ,
+    },
     delete: async (req, res) => {
         // * BASE DE DATOS EN SQL * //
             try {
@@ -148,8 +176,13 @@ module.exports = {
     },
     modify: async (req, res, next) => {
         // * BASE DE DATOS EN SQL * //
+        let errors = validationResult(req)
+
+        if(errors.isEmpty()){
         console.log(req.params.id)
         try {
+            let fileName;
+            req.file ?  fileName = req.file.filename : fileName = ''
             const updateCourse = await Course.update({
                 name: req.body.name,
                 short_description: req.body.short_description,
@@ -158,7 +191,7 @@ module.exports = {
                 price: req.body.price,
                 discount: req.body.discount,
                 link: req.body.link,
-                image: req.file.filename,
+                image: fileName,
             },
             {
                 where: {
@@ -172,7 +205,17 @@ module.exports = {
         } catch (error){
             console.log(error)
         }
+    } else {
+        try {
+            const courseUpdate = await Course.findByPk(req.params.id)
+            const categorie = await Categorie.findAll()
+            res.render('course/modify', {title:"Modificar", course: courseUpdate, category: categorie, errors: errors.errors})        
 
+
+        } catch(error){
+            console.log(error);
+        }
+    }
         // * BASE DE DATOS EN JSON * //
         // let courses = leerJson();
         // let id =req.params.id 
