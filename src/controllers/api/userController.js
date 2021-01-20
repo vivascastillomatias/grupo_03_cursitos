@@ -8,7 +8,9 @@ const bcrypt = require('bcryptjs');
 module.exports = {
     list: async (req, res) => {
         try {
-            const allUsers = await User.findAll()
+            const allUsers = await User.findAll({
+                attributes: { exclude: ['password'] }
+            })
             let count = allUsers.length;
             res.json({count ,allUsers})
         } catch (error) {
@@ -17,7 +19,9 @@ module.exports = {
     },
     search: async (req, res) => {
         try {
-            const search = await User.findAll()
+            const search = await User.findAll({
+                attributes: { exclude: ['password'] }
+            })
             res.json({search})
         } catch (error) {
             console.log(error)
@@ -25,16 +29,25 @@ module.exports = {
     },
     searchById: async (req, res) => {
         try {
-            console.log(req.params.id)
             const course = await User.findByPk(req.params.id)
             res.json({course})
         } catch (error) {
             console.log(error)
         }
     },
-    registerView: (req, res) => {
-        res.render('user/signin', {title:"Registrarse"})
-        // console.log('Se accedió a la vista de registro')
+    last: async (req, res) => {
+        try {
+            const userDate = await User.max('createdAt')
+            console.log(userDate)
+            const user = await User.findOne({
+                where: {
+                    created_at: userDate
+                }
+            })
+            res.json({user})
+        } catch (error) {
+            console.log(error)
+        }
     },
     processRegister: async (req, res) => {
         try {

@@ -28,5 +28,19 @@ module.exports = {
         } catch (error) {
             console.log(error)
         }
-    }
+    },
+    last: async (req, res) => {
+        try {
+            const courseDate = await Course.max('createdAt')
+            console.log(courseDate)
+            const course = await Course.findOne({
+                where: {
+                    created_at: courseDate
+                }
+            })
+            res.json({course})
+        } catch (error) {
+            console.log(error)
+        }
+    },
 }
