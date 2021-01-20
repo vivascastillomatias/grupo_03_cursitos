@@ -9,7 +9,7 @@
         <!-- /Header -->
         <section class="jumbotron">
             <h1 class="display-6 text-center">Modificando <%= course.name %></h1>
-            <form class="container" method="POST" action="/courses/<%=course.id%>?_method=PUT" enctype="multipart/form-data">
+            <form class="container" id="form" method="POST" action="/courses/<%=course.id%>?_method=PUT" enctype="multipart/form-data">
                 <% if(typeof errors != 'undefined') { %>
                     <ul class="alert alert-danger">
                         <% errors.forEach(error => { %>
@@ -23,10 +23,12 @@
                 <div class="form-group">
                     <label for="name">Nombre del curso</label>
                     <input type="text" name="name" id="name" class="form-control form-control-lg"  placeholder="" value="<%= course.name %>">
+                    <div id="feedback-name"></div>
                 </div>
                 <div class="form-group">
                     <label for="description">Descripcion corta del curso</label>
-                    <input class="form-control" name="shortDescription" id="description" placeholder="." value="<%= course.shortDescription %>">
+                    <input class="form-control" name="shortDescription" id="shortDescription" placeholder="." value="<%= course.short_description %>">
+                    <div id="feedback-shortDescription"></div>
                 </div>
                 <div class="form-group">
                     <label for="description">Descripcion del curso</label>
@@ -37,38 +39,48 @@
                         <label for="nameFeatures">Imagen del curso</label>
                         <hr>
                         <% if(course.image != ''){ %>
-                            <img src="/images/products/<%=course.image%>" style="max-height: 20rem;"  alt="<%=course.image%>">
+                            <img src="/images/products/<%=course.image%>" class="col" style="max-height: 20rem;"  alt="<%=course.image%>">
                         <%}else{ %>
-                            <img src="https://via.placeholder.com/300x300" style="max-height: 20rem;" class="card-img-top" alt="<%=course.image%>">
+                            <img src="https://via.placeholder.com/300x300" class="col" style="max-height: 20rem;" class="card-img-top" alt="<%=course.image%>">
                         <%}%>
                         
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="category">Categoría</label>
-                        <select name="category" id="category" class="form-control">
-                            <% for(var i=0;i<category.length;i++){ %>
-                        <option value="<%= category[i].id  %>"><%= category[i].name %></option>
-                            <% } %> 
-                        </select>
-                        <label for="price">Precio</label>
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend block">
-                                <span class="input-group-text">$</span>
+                        <div>
+                            <label for="category">Categoría</label>
+                            <select name="category" id="category" class="form-control">
+                                <% for(var i=0;i<category.length;i++){ %>
+                            <option value="<%= category[i].id  %>"><%= category[i].name %></option>
+                                <% } %> 
+                            </select>
+                            <div id="feedback-category"></div>
+                        </div>
+                        <div>
+                            <label for="price">Precio</label>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend block">
+                                    <span class="input-group-text">$</span>
+                                </div>
+                                <input type="text" id="price" name="price" class="form-control" aria-label="Amount (to the nearest dollar)" value="<%= course.price %>">
+                                <div class="input-group-append">
+                                    <span class="input-group-text">.00</span>
+                                </div>
+                                <div id="feedback-price"></div>
                             </div>
-                            <input type="text" id="price" name="price" class="form-control" aria-label="Amount (to the nearest dollar)" value="<%= course.price %>">
-                            <div class="input-group-append">
-                                <span class="input-group-text">.00</span>
+                        </div>
+                        <div>
+                            <label for="discount">Descuento</label>
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" id="discount" name="discount" value="<%= course.discount %>" placeholder="">
                             </div>
                         </div>
 
-                        <label for="discount">Descuento</label>
-                        <div class="input-group mb-3">
-                            <input type="text" class="form-control" id="discount" name="discount" value="<%= course.discount %>" placeholder="">
-                        </div>
-
-                        <label for="link">Link del curso</label>
-                        <div class="input-group mb-3">
-                            <input type="text" class="form-control" id="link" name="link" placeholder="" value="<%= course.link %>">
+                        <div>
+                            <label for="link">Link del curso</label>
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" id="link" name="link" placeholder="" value="<%= course.link %>">
+                            </div>
+                            <div id="feedback-link"></div>
                         </div>
 
                         <label for="link">Cambia la imagen del curso</label>
@@ -93,6 +105,58 @@
         <%- include('../partials/footer') %>
 
     </body>
-    <script src="/javascripts/validacionesNewCourse.js"></script>
+    <!-- <script src="/javascripts/validacionesNewCourse.js"></script> -->
+
+    <script>
+        function noVacio(e) {
+    if (e.value) {
+        e.className += " is-valid";
+        return true
+    } else {
+        e.className += " is-invalid";
+        document.getElementById("feedback-"+e.id).innerText = 'Ingrese un valor';
+        document.getElementById("feedback-"+e.id).className = 'invalid-feedback'
+        return false
+    }
+    }
+
+    window.addEventListener("load", function(){
+        
+        let formulario = document.getElementById("form")
+        
+        let inputs = document.querySelectorAll("input");
+        inputs.forEach(e => {
+            e.addEventListener("click", function(){
+                this.classList.remove('is-invalid');
+                this.classList.remove('is-valid');
+            });
+        });
+        //Agregamos el evento para atraparlo
+        formulario.addEventListener("submit", function(event){
+            //falta resolver porque no actúa el preventDefault
+        event.preventDefault();
+        let name = document.getElementById("name")
+        let shortDescription = document.getElementById("shortDescription")
+        let price = document.getElementById("price")
+        let category = document.getElementById("category")
+        let link = document.getElementById("link")
+
+        let validacionName = noVacio(name);
+        let validacionShortDescription = noVacio(shortDescription);
+        let validacionCategory = noVacio(category);
+        let validacionPrice = noVacio(price);
+        let validacionLink = noVacio(link);
+
+        if (validacionName
+            && validacionShortDescription
+            && validacionPrice
+            && validacionCategory
+            && validacionLink
+        ) {
+            this.submit();
+        }
+        });
+    });
+    </script>
 
 </html>

@@ -14,7 +14,7 @@
 
                 <div class="row">
                     <div class="col-md-7">
-                        <span class="badge badge-danger my-lg-3"><%= course.category %></span>
+                        <span class="badge badge-danger my-lg-3"><%= course.categoryCourse.name %></span>
                         <h3 class="card-title"><%= course.name %></h3>
         
                         <p class="card-text"><small class="text-muted"><%= course.teacher %></small></p>
@@ -39,15 +39,20 @@
                 <h3 class="alert-heading">$ <%= course.price %>  </h3>
                 <!-- <p><%= course.discount %>% OFF</p> -->
                 <h4> <span class="display-4 badge badge-success"> <%= course.discount %>% OFF </span></h4>
-                <form action="/carrito/create/<%= course.id %>" method="POST" class="row justify-content-center btn-group-lg p-2">
-                    <input type="submit" class="btn btn-success col-md-4 m-1" value="Agregar al carrito">
-                    <input type="button" class="btn btn-outline-success col-md-4 m-1" value="Compralo ahora">
-                </form>
-                <hr>
-                <form action="/courses/delete/<%=course.id%>?_method=DELETE" method="POST" class="row justify-content-center btn-group-xs p-2">
-                <a href="/courses/<%= course.id %>/edit" class="btn btn-outline-primary col-md-2 m-1">Editar curso</a>
-                    <input type="submit" class="btn btn-outline-danger col-md-2 m-1" value="Eliminar curso">
-                </form>
+                <% if (!owner) { %>
+                    <form action="/carrito/create/<%= course.id %>" method="POST" class="row justify-content-center btn-group-lg p-2">
+                        <input type="submit" class="btn btn-success col-md-4 m-1" value="Agregar al carrito">
+                        <input type="button" class="btn btn-outline-success col-md-4 m-1" value="Compralo ahora">
+                    </form>
+                <% }%>
+                <% if (logSuccess && owner) { %>
+                    <hr>
+                    <form action="/courses/delete/<%=course.id%>?_method=DELETE" method="POST" class="row justify-content-center btn-group-xs p-2">
+                        <a href="/courses/<%= course.id %>/edit" class="btn btn-outline-primary col-md-2 m-1">Editar curso</a>
+                        <input type="submit" class="btn btn-outline-danger col-md-2 m-1" value="Eliminar curso">
+                    </form>
+                <% }%>
+                 
         </div>
     </section>
 <!-- Footer -->

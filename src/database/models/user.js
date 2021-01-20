@@ -11,5 +11,10 @@ module.exports = (sequelize, DataTypes) => {
         completed: DataTypes.BOOLEAN,
         password: DataTypes.INTEGER
     })
+    User.associate = models => {
+        User.hasMany(models.Course, {
+            foreignKey: 'owner'
+          })
+    }
     return User
 }

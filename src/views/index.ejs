@@ -13,41 +13,73 @@
     
     <!-- Hero section -->
     <section>
-        <div class="jumbotron bg-dark text-white">
-            <!-- <div class="row text-center">
-                <h3>La formación profesional en tecnología es cada vez más importante</h3>
-            </div> -->
-            <!-- <div class="row justify-content-center">
-                <form>
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="¿Que deseas aprender?" aria-label="¿Que deseas aprender?" aria-describedby="button-addon2">
-                        <div class="input-group-append">
-                          <button type="submit" class="btn btn-success" type="button" id="button-addon2">Buscar</button>
-                        </div>
+        <% if (!logSuccess) { %>
+            <div class="jumbotron bg-dark text-white">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <img  class="figure-img img-fluid rounded card-img-top" src="/images/img-banner.jpeg" alt="" srcset="">
                     </div>
-                </form>
-            </div> -->
-            <div class="row">
-                <div class="col-sm-6">
-                    <img  class="figure-img img-fluid rounded card-img-top" src="/images/img-banner.jpeg" alt="" srcset="">
-                </div>
-                <div class="col-sm-6">
-                    <h3> <span class="badge badge-success display-3"> 70% </span> de los graduados de Cursitos consiguen un empleo en el término de un año</h3>
-                    <h3> <span class="display-3 badge badge-success"> 30% </span> crean su propia empresa de tecnología o startup</h3>
-                    <hr>
-                    <p>Aprendé con nosotros lo ultimo en tecnología, para hacer crecer tu hobbie o formarte profesionalmente</p>
-                    
-
+                    <div class="col-sm-6">
+                        <h3> <span class="badge badge-success display-3"> 70% </span> de los graduados de Cursitos consiguen un empleo en el término de un año</h3>
+                        <h3> <span class="display-3 badge badge-success"> 30% </span> crean su propia empresa de tecnología o startup</h3>
+                        <hr>
+                        <p>Aprendé con nosotros lo ultimo en tecnología, para hacer crecer tu hobbie o formarte profesionalmente</p>
+                    </div>
                 </div>
             </div>
-        </div>
+        <% } else { %>
+            <% if (myCourses.length) { %>
+                <section class="jumbotron pt-4">
+                    <div class="row">
+                        <div class="col text-center pb-3">
+                            <h3> Mis cursos publicados:</h3>
+                        </div>
+                    </div>
+    
+                    <section class="row row-cols-1 row-cols-md-5">
+                        <% myCourses.forEach(course=>{%>
+                        <div class="col mb-3" onclick="location.href='/courses/<%=course.id%>'" >
+                            <div class="card text-white bg-dark mb-3" style="min-height: 15rem;cursor: pointer;">
+                                <% if(course.image != ''){ %>
+                                <img src="/images/products/<%= course.image %> " style="max-height: 20rem;" class="card-img-top" alt="<%=course.image%>">
+                                <%}else{ %>
+                                <img src="https://via.placeholder.com/300x300" style="max-height: 20rem;" class="card-img-top" alt="<%=course.image%>">
+                                <%}%>
+                                <div class="card-body">
+                                    <h5 class="card-title"><%=course.name%></h5>
+                                </div>
+                            </div>
+                        </div>
+                        <%})%>
+                        <div class="col mb-3" >
+                            <div class="card text-white text-center bg-dark mb-3" style="min-height: 15rem;cursor: pointer;">
+                                <div class="card-body pt-5">
+                                    <h5 class="card-title">PUBLICAR NUEVO CURSO</h5>
+                                    <a href="#" class="btn btn-outline-success">Publicar curso!</a>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </section>
+             
+            <% } else { %>
+                <div class="jumbotron bg-dark text-white">
+                    <div class="row">
+                        <div class="col text-center">
+                            <h3> No tienes ningún curso publicado, hazlo ahora! </h3>
+                            <a class="btn btn-outline-success col-sm-4 my-2" href="/courses/create"> Publicar curso! </a>
+                        </div>
+                    </div>
+                </div>
+            <% } %>
+        <% } %>
     </section>
     <!-- Fin hero section -->
 
     <!-- Main -->
     <section class="jumbotron">
         <h1 class="display-6">¿Que deseas aprender?</h1>
-        <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+        <p class="lead">En Cursitos! encontrarás los mejores cursos para aprender online </p>
         <ul class="nav justify-content-center my-lg-3">
             
 

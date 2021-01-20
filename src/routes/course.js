@@ -26,7 +26,8 @@ router.get('/', courseController.all)
 router.get('/create', logged, courseController.create)
 
 //post registro -> registrar un nuevo curso
-router.post('/', logged, upload.single('image'), validator.validator, courseController.store)
+// router.post('/', logged, upload.single('image'), validator.validator, courseController.store)
+router.post('/', logged, upload.single('image'), courseController.store)
 
 //Get Ver detalle de curso
 router.get('/:id', courseController.detail)
@@ -44,6 +45,7 @@ router.delete('/delete/:id', logged, courseController.delete)
 router.get('/:id/edit', logged, courseController.modifyView)
 
 //PUT modificar -> modificar un curso
-router.put('/:id', logged, upload.single('image'), validator.validator, courseController.modify)
+// router.put('/:id', logged, validator.validator, upload.single('image'), courseController.modify)
+router.put('/:id', logged, upload.single('image'), courseController.modify)
 
 module.exports = router;

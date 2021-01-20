@@ -9,7 +9,8 @@ module.exports = {
     list: async (req, res) => {
         try {
             const allUsers = await User.findAll()
-            res.json({allUsers})
+            let count = allUsers.length;
+            res.json({count ,allUsers})
         } catch (error) {
             console.log(error)
         }

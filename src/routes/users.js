@@ -20,12 +20,14 @@ var upload = multer({ storage: storage })
 //Iniciar sesion
 router.get('/login', userController.loginView)
 
-router.post('/login', validator.login, userController.processLogin);
+// router.post('/login', validator.login, userController.processLogin);
+router.post('/login', userController.processLogin);
 
 //Registrarse
 router.get('/signin', userController.registerView) 
 
-router.post('/signin', validator.signin, userController.processRegister)
+// router.post('/signin', validator.signin, userController.processRegister)
+router.post('/signin', userController.processRegister)
 
 //Completar registro
 router.get('/completeUser/:id', userController.completeUserView) 

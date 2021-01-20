@@ -14,12 +14,16 @@ module.exports = ( sequelize, DataTypes ) => {
             image: DataTypes.STRING,
             owner: DataTypes.INTEGER,
         })
-        // Course.associate = models => {
-        //     Course.belongsTo(models.Categorie, {
-        //         as: 'categorie',
-        //         foreingKey: 'category'
-        //     })
-        // }
+        Course.associate = models => {
+            Course.belongsTo(models.Categorie, {
+                as: 'categoryCourse',
+                foreignKey: 'category'
+            })
+            Course.belongsTo(models.User, {
+                as: 'ownerCourse',
+                foreignKey: 'owner'
+            })
+        }
         return Course
 
 }

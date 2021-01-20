@@ -7,6 +7,11 @@ module.exports = ( sequelize, DataTypes ) => {
             name: DataTypes.STRING,
             description: DataTypes.STRING,
             description: DataTypes.STRING(1200)
-        })
+        });
+        Categorie.associate = models => {
+            Categorie.hasMany(models.Course, {
+                foreignKey: 'category'
+              })
+        }
         return Categorie
 }
