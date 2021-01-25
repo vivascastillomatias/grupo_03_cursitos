@@ -15,10 +15,10 @@ router.get('/', carritoController.all)
 
 //post registro -> registrar un nuevo curso
 //Responde al "Agregar al carrito" que viene desde la vista de detalle
-router.post('/create/:id', carritoController.store)
+router.post('/add/:id', carritoController.store)
 
-//PUT borrar un curso del carrito
-router.delete('/:id', carritoController.delete)
+//POST borrar un curso del carrito
+router.post('/delete/:id', carritoController.delete)
 
 //POST confirmar compra -> devolver pagina
 router.post('/buy', carritoController.buy)

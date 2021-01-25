@@ -1,50 +1,50 @@
 const fs = require('fs');
 const path = require('path');
-
-const leerCarrito = () => {
-    const carritoFilePath = path.join(__dirname, '../data/carritoDataBase.json');
-    return JSON.parse(fs.readFileSync(carritoFilePath, 'utf-8'));
-}
-const leerCursos = () => {
-	const coursesFilePath = path.join(__dirname, '../data/coursesDataBase.json');
-    return JSON.parse(fs.readFileSync(coursesFilePath, 'utf-8'));
-}
-
-const grabarCarrito = (newCarrito) => {
-    const carritoFilePath = path.join(__dirname, '../data/carritoDataBase.json');
-    fs.writeFileSync(carritoFilePath, JSON.stringify(newCarrito))
-}
+const { Course, Sequelize } = require("../database/models/")
+const Op = Sequelize.Op
 
 module.exports = {
-    all: (req, res) => {
-        leerCarrito();
-        console.log("se accedió al carrito")
-        res.render('carrito', {courses: leerCarrito(), title: "Carrito"})
+    all: async (req, res) => {
+
+        if (req.session.cart) {
+            let carro = req.session.cart
+            console.log('CAAAAAAARRRRRRRRROOOO:  '+carro)
+            let results = await Course.findAll({
+                where: {
+                    id: carro
+                }
+            })
+            res.render('carrito',{title:"Cart", courses: results})
+        }else{
+            let courses = []
+            res.render('carrito',{title:"Cart", courses})
+
+        }
     },
     // create: (req, res) => {}  
     store: (req, res) => {
-        leerCursos().forEach(course => {
-            if(req.params.id == course.id){
-            var newCourse = {
-                    ...course
+        if (req.session.cart) {
+            let carro = req.session.cart;
+            if (carro.indexOf(req.params.id) == -1) {
+                carro.push(req.params.id)
+                req.session.cart = carro;
             }
-            var newCarrito = [...leerCarrito(), newCourse]
-            grabarCarrito(newCarrito)
-            }
-        });
-        res.redirect('../')
-       console.log('se agregó un curso al carrito') 
+        } else {
+            req.session.cart = [req.params.id]
+        }
+        res.redirect('/courses')
     } ,
     delete: (req, res) => {
-        var newCarrito = leerCarrito().filter(carrito => 
-            req.params.id != carrito.id)
-        grabarCarrito(newCarrito)
-        console.log('Se eliminó un producto y se redirecciono al carrito')
-        res.redirect('/carrito')
+        if (req.session.cart) {
+            let carro = req.session.cart;
+            let index = carro.indexOf(req.params.id)
+            if (index >= 0) {
+                carro.splice(index,1);
+            }
+        }
+        res.redirect('/cart')
     } ,
     buy: (req, res) => {
-        console.log('Se compró')
-        res.send('exito')
     } 
 }
 

@@ -47,7 +47,7 @@ app.use(cookie())
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/courses', coursesRouter);
-app.use('/carrito', carritoRouter);
+app.use('/cart', carritoRouter);
 app.use('/api', apiRouter);
 //------------------------- end routes ------------------------------------
 

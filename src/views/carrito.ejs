@@ -12,50 +12,65 @@
         <section class="jumbotron">
             <h1 class="display-6">Carrito</h1>
             <div class="row">
-                <div class="col-md-9">
-                    <div class="row row-cols-1 row-cols-md-12">
-                        <% courses.forEach(course=>{%>
-                        <div class="card mb-2">
+                <% if (courses.length > 0) { %>
+                    <div class="col-md-9">
+                        <div class="row row-cols-1 row-cols-md-12">
+                            <% var total = 0 %> 
+                            <% courses.forEach(course=>{%>
+                            <div class="card mb-2">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-sm-2 col-xs-12">
+                                            <% if(course.image != ''){ %>
+                                                <img src="/images/products/<%=course.image%>" style="max-height: 20rem;" class="card-img-top" alt="<%=course.image%>">
+                                            <%}else{ %>
+                                                <img src="https://via.placeholder.com/300x300" style="max-height: 20rem;" class="card-img-top" alt="<%=course.image%>">
+                                            <%}%>
+                                        </div>
+                                        <div class="col-sm-8 col-xs-12">
+                                            <h5 class="card-title"><%=course.name%></h5>
+                                            <p class="card-text"><%=course.shortDescription%></p>
+                                        </div>
+                                        <div class="col-sm-2 col-xs-12">
+                                            <span class="badge badge-dark">$  <%=(course.price)-((course.price)*(course.discount))/100%></span>
+                                            <% total = total + (course.price)-((course.price)*(course.discount))/100 %> 
+                                            <span class="badge badge-success"><%=course.discount%> % OFF</span>
+                                            <hr>
+                                            <form action="/cart/delete/<%=course.id%>" method="POST">
+                                                <button type="submit" class="btn btn-secondary btn-sm">Eliminar</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <%})%>
+                        </div>
+                    </div>
+                <% } else { %>
+                    <div class="col-md-12">
+                        <div class="mb-2 ">
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col-sm-2 col-xs-12">
-                                        <% if(course.image != ''){ %>
-                                            <img src="/images/products/<%=course.image%>" style="max-height: 20rem;" class="card-img-top" alt="<%=course.image%>">
-                                        <%}else{ %>
-                                            <img src="https://via.placeholder.com/300x300" style="max-height: 20rem;" class="card-img-top" alt="<%=course.image%>">
-                                        <%}%>
-                                    </div>
-                                    <div class="col-sm-8 col-xs-12">
-                                        <h5 class="card-title"><%=course.name%></h5>
-                                        <p class="card-text"><%=course.shortDescription%></p>
-                                    </div>
-                                    <div class="col-sm-2 col-xs-12">
-                                        <span class="badge badge-dark">$  <%=(course.price)-((course.price)*(course.discount))/100%></span>
-                                        <span class="badge badge-success"><%=course.discount%> % OFF</span>
-                                        <hr>
-                                        <form action="/carrito/<%=course.id%>?_method=DELETE" method="post">
-                                            <button type="submit" class="btn btn-secondary btn-sm">Eliminar</button>
-                                        </form>
+                                    <div class="col-sm-12 col-xs-12">
+                                        <h5 class="card-title"> Tu carrito está vacio, visita nuestros cursos <a href="/courses"> aquí</a> </h5>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <%})%>
-    
-    
                     </div>
-                </div>
+                <% } %>
+                <% if (courses.length > 0) { %>
                 <div class="col-md-3 mt-xs-3">
                     <div class="card">
                         <h5 class="card-header text-center">TOTAL</h5>
-                        <div class="card-body">
-                            <h1><span class="badge badge-secondary">$ [TOTAL]</span></h1>
-                            <h5 class="card-title">Special title treatment</h5>
-                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                        <div class="card-body text-center">
+                            <h1><span class="badge badge-secondary">$ <%= total %> </span></h1>
+                            <p class="card-text">Compra tus cursos y disfrutalos por tiempo indeterminado. Tienes 10 días a partir de tu comprar para devolver el curso</p>
                             <button type="submit" class="btn btn-success form-control">Pagar</button>
                         </div>
                     </div>
                 </div>
+                <% } %>
             </div>
         </section>
         <%- include('partials/footer') %>

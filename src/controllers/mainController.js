@@ -33,12 +33,12 @@ module.exports = {
     myCourses:async (req, res)=>{
         // * BASE DE DATOS EN SQL * //
         try {
-            const allCourses = await Course.findAll({
+            const results = await Course.findAll({
                 where: {
                     owner: req.session.user.id
                 }
             })
-            res.render('index',{title:"Home", courses: allCourses})
+            res.render('index',{title:"Home", courses: results})
         } catch (error) {
             console.log(error)
         }

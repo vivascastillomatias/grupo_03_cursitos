@@ -5,17 +5,6 @@ const path = require('path');
 const bcrypt = require('bcryptjs');
 const { validationResult  } = require('express-validator');
 
-
-const leerJson = () => {
-	const usersFilePath = path.join(__dirname, '../data/usersDataBase.json');
-    return JSON.parse(fs.readFileSync(usersFilePath, 'utf-8'));
-}
-
-const grabarJson = (newUsers) => {
-    const usersFilePath = path.join(__dirname, '../data/usersDataBase.json');
-    fs.writeFileSync(usersFilePath, JSON.stringify(newUsers))
-}
-
 module.exports = {
     registerView: (req, res) => {
         res.render('user/signin', {title:"Registrarse"})
@@ -144,9 +133,8 @@ module.exports = {
                     if (result) {
                         // ------------------PASSWORD CORRECTA----------------
                         req.session.user = {user: userEncontrado.user,id: userEncontrado.id,completed: userEncontrado.completed, image: userEncontrado.image};
-            
                         if (req.body.rememberMe == 'true') {
-                            console.log('SE GUARDA LA COOOKIE')
+                            console.log('SE GUARDA LA COOKIE')
                             res.cookie('rememberMe', userEncontrado.user, {maxAge: 1000*60*1 })
                         }
                         res.redirect('/')

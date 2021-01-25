@@ -11,7 +11,14 @@ module.exports = {
         // * BASE DE DATOS SQL * //
         try {
             const allCourses = await Course.findAll()
-            res.render('course/list',{title:"Todos los cursos", courses: allCourses})
+
+            if (req.session.user) {
+                courses = allCourses.filter(course => course.owner != req.session.user.id);
+            }else{
+                courses = allCourses;
+            }
+
+            res.render('course/list',{title:"Todos los cursos", courses})
         } catch (error) {
             console.log(error)
         }
@@ -41,7 +48,10 @@ module.exports = {
             const courseDetail = await Course.findByPk(req.params.id, {
                 include: ['categoryCourse']
                });
-            let owner = courseDetail.owner == req.session.user.id;
+               let owner = false;
+               if (req.session.user) {
+                   owner = courseDetail.owner == req.session.user.id;
+               }
             res.render('course/detail', {title:"Detalle de "+courseDetail.name, course: courseDetail, owner})
             console.log('Se accedió al detalle de un curso')
         } catch (error) {
