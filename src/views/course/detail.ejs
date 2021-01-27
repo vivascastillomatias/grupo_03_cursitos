@@ -11,7 +11,7 @@
     <section class="jumbotron  bg-dark text-dark">
         <div class="card mb-3">
             <div class="card-body">
-
+                
                 <div class="row">
                     <div class="col-md-7">
                         <span class="badge badge-danger my-lg-3"><%= course.categoryCourse.name %></span>
@@ -40,10 +40,13 @@
                 <!-- <p><%= course.discount %>% OFF</p> -->
                 <h4> <span class="display-4 badge badge-success"> <%= course.discount %>% OFF </span></h4>
                 <% if (!owner) { %>
-                    <form action="/cart/add/<%= course.id %>" method="POST" class="row justify-content-center btn-group-lg p-2">
-                        <input type="submit" class="btn btn-success col-md-4 m-1" value="Agregar al carrito">
-                        <input type="button" class="btn btn-outline-success col-md-4 m-1" value="Compralo ahora">
-                    </form>
+                    <% if (obtained) { %>
+                        <a class="btn btn-outline-primary col-md-2 m-1" target="_blank" href="https://<%= course.link %>">Ya es tuyo!, disfrútalo</a>
+                    <% } else {%>
+                        <form action="/cart/add/<%= course.id %>" method="POST" class="row justify-content-center btn-group-lg p-2">
+                            <input type="submit" class="btn btn-success col-md-4 m-1" value="Agregar al carrito">
+                        </form>
+                    <% }%>
                 <% }%>
                 <% if (logSuccess && owner) { %>
                     <hr>

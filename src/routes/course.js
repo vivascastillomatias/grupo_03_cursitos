@@ -5,7 +5,7 @@ const path = require('path');
 const courseController = require('../controllers/courseController')
 const session = require('express-session');
 const { nextTick } = require('process');
-const logged = require('../middlewares/route/courseRoutes')
+const logged = require('../middlewares/route/logged')
 const validator = require('../middlewares/route/courseValidator');
    
 var storage = multer.diskStorage({

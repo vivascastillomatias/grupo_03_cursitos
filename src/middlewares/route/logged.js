@@ -3,6 +3,6 @@ module.exports = function(req,res,next){
     if(id){
         next()
     } else {
-        res.render('user/signin', {title:"Registrarse"})
+        res.render('user/login', {title:"Iniciar sesión"})
     }
 }

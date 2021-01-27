@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const { brotliDecompressSync } = require('zlib');
-const { Course, Categorie, Sequelize } = require("../database/models/")
+const { Sale, Course, Categorie, Sequelize } = require("../database/models/")
 const Op = Sequelize.Op
 const session = require('express-session')
 const { validationResult  } = require('express-validator');
@@ -49,10 +49,18 @@ module.exports = {
                 include: ['categoryCourse']
                });
                let owner = false;
+               let obtained = false;
                if (req.session.user) {
                    owner = courseDetail.owner == req.session.user.id;
+                   let resultQuery = await Sale.findOne({
+                       where: {
+                           [Op.and]: [ {user_id: req.session.user.id}, {course_id: courseDetail.id}]
+                       }
+                   })
+                   resultQuery ? obtained = true : obtained = false;
                }
-            res.render('course/detail', {title:"Detalle de "+courseDetail.name, course: courseDetail, owner})
+            // res.send({title:"Detalle de "+courseDetail.name, course: courseDetail, owner, obtained})
+            res.render('course/detail', {title:"Detalle de "+courseDetail.name, course: courseDetail, owner, obtained})
             console.log('Se accedió al detalle de un curso')
         } catch (error) {
             console.log(error)

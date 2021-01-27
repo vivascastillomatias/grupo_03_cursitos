@@ -61,14 +61,16 @@
                 <% } %>
                 <% if (courses.length > 0) { %>
                 <div class="col-md-3 mt-xs-3">
-                    <div class="card">
-                        <h5 class="card-header text-center">TOTAL</h5>
-                        <div class="card-body text-center">
-                            <h1><span class="badge badge-secondary">$ <%= total %> </span></h1>
-                            <p class="card-text">Compra tus cursos y disfrutalos por tiempo indeterminado. Tienes 10 días a partir de tu comprar para devolver el curso</p>
-                            <button type="submit" class="btn btn-success form-control">Pagar</button>
+                    <form action="/cart/buy" method="POST"> 
+                        <div class="card">
+                            <h5 class="card-header text-center">TOTAL</h5>
+                            <div class="card-body text-center">
+                                <h1><span class="badge badge-secondary">$ <%= total %> </span></h1>
+                                <p class="card-text">Compra tus cursos y disfrutalos por tiempo indeterminado. Tienes 10 días a partir de tu comprar para devolver el curso</p>
+                                <button type="submit" class="btn btn-success form-control">Pagar</button>
+                            </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
                 <% } %>
             </div>

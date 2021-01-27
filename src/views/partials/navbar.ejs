@@ -12,46 +12,48 @@
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </form> -->
+            
             <ul class="navbar-nav mr-auto">
                 <form method="POST" action="/courses/search">
-                    <div class="input-group" style="width: 160%;">
+                    <div class="input-group w-100 w-xs-75">
                         <input type="text" name="search" class="form-control" placeholder="¿Que deseas aprender?" aria-label="¿Que deseas aprender?" aria-describedby="button-addon2">
                         <div class="input-group-append">
                           <button type="submit" class="btn btn-success" type="button" id="button-addon2">Buscar</button>
                         </div>
                     </div>
                 </form>
-            </ul>
-            <ul class="navbar-nav mr-right">
-                <li class="nav-item">
-                    <a class="nav-link" href="/cart">Carrito <span class="sr-only">
-                        <img src="/images/carrito.png" onclick="location.href='/cart'" alt="" class="cart" />
-                    </span></a>
-                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/courses">Todos nuestros cursos! <span class="sr-only">
                     </span></a>
                 </li>
-
+            </ul>
+            <ul class="navbar-nav">
                 <% if (!logSuccess) { %>
                     <li class="nav-item mr-md-1">
-                        <a class="btn btn-outline-success col-sm-12" href="/users/signin">Signin <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="btn btn-outline-light col-sm-12"  href="/users/login">Login<span class="sr-only">(current)</span></a>
+                        <div class="btn-group" role="group" aria-label="Basic example">
+                            <a class="btn btn-outline-warning" href="/cart">Carrito</a>
+                            <a class="btn btn-outline-light col-sm-12" href="/users/signin">Signin <span class="sr-only">(current)</span></a>
+                            <a class="btn btn-outline-light col-sm-12"  href="/users/login">Login<span class="sr-only">(current)</span></a>
+                        </div>
                     </li>
                     <% } else { %>
                     <li class="nav-item">
                         <a class="nav-link" href="/courses/create">Publica tu curso <span class="sr-only">(current)</span></a>
                     </li>
+                    <li class="nav-item">
+                        <a class="btn btn-outline-warning" href="/cart">Carrito</a>
+                    </li>
+
                     <li class="nav-item dropdown">
-                        <a class="btn btn-info dropdown-toggle" href="#" id="option-session" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="btn btn-outline-light dropdown-toggle btn-sm m-1 ml-2" href="#" role="button" id="option-session" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <%= userLoged.user %>
                         </a>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="option-session">
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             <% if (userLoged.image) { %>
                                 <a href="#" class="dropdown-item align-content-center">
-                                    <img src="/images/users/<%=userLoged.image%>" width="100%" class="rounded-circle" alt="<%=userLoged.image%>">
+                                    <div class="col-sm-12">
+                                        <img src="/images/users/<%=userLoged.image%>" width="100%" class="rounded-circle" alt="<%=userLoged.image%>">
+                                    </div>
                                 </a>
                                 <hr>
                             <% } %>
@@ -71,7 +73,6 @@
                         </div>
                     </li>
                 <% } %>
-                 
             </ul>
         </div>
     </nav>

@@ -1,17 +1,22 @@
 const fs = require('fs');
 const path = require('path');
-const { Course, Sequelize } = require("../database/models/")
+const { Course, Sale, Sequelize } = require("../database/models/")
 const Op = Sequelize.Op
 
 module.exports = {
     all: async (req, res) => {
 
         if (req.session.cart) {
-            let carro = req.session.cart
-            console.log('CAAAAAAARRRRRRRRROOOO:  '+carro)
+            let carro = req.session.cart;
+            let userId = [];
+            if(req.session.user) {
+                userId = [req.session.user.id]
+            }
+            console.log('SESSION:'+ userId)
             let results = await Course.findAll({
                 where: {
-                    id: carro
+                    id: carro,
+                    owner:{ [Op.notIn]: userId}
                 }
             })
             res.render('carrito',{title:"Cart", courses: results})
@@ -44,7 +49,32 @@ module.exports = {
         }
         res.redirect('/cart')
     } ,
-    buy: (req, res) => {
+    buy: async (req, res) => {
+        let carro = req.session.cart;
+        let userId = [];
+        if(req.session.user) {
+            userId = [req.session.user.id]
+        }
+        let results = await Course.findAll({
+            where: {
+                id: carro,
+                owner:{ [Op.notIn]: userId}
+            }
+        })
+        
+        if (results.length > 0) {
+            results.map(async c => {
+                price = (c.price)-((c.price)*(c.discount))/100
+                await Sale.create({
+                    user_id: userId,
+                    course_id: c.id,
+                    price,
+                })
+            })
+        }
+
+        req.session.cart = [];
+        res.redirect('/') //Debe ir a "Mis cursos"
     } 
 }
 
