@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const carritoController = require('../controllers/carritoController')
+const logged = require('../middlewares/route/logged')
 /* GET users listing. */
 // router.get('/', function(req, res, next) {
 //   res.render('carrito');
@@ -21,6 +22,6 @@ router.post('/add/:id', carritoController.store)
 router.post('/delete/:id', carritoController.delete)
 
 //POST confirmar compra -> devolver pagina
-router.post('/buy', carritoController.buy)
+router.post('/buy',logged, carritoController.buy)
 
 module.exports = router;

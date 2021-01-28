@@ -15,7 +15,7 @@
             
             <ul class="navbar-nav mr-auto">
                 <form method="POST" action="/courses/search">
-                    <div class="input-group w-100 w-xs-75">
+                    <div class="input-group input-group-sm  m-1 mr-2">
                         <input type="text" name="search" class="form-control" placeholder="¿Que deseas aprender?" aria-label="¿Que deseas aprender?" aria-describedby="button-addon2">
                         <div class="input-group-append">
                           <button type="submit" class="btn btn-success" type="button" id="button-addon2">Buscar</button>
@@ -23,8 +23,8 @@
                     </div>
                 </form>
                 <li class="nav-item">
-                    <a class="nav-link" href="/courses">Todos nuestros cursos! <span class="sr-only">
-                    </span></a>
+                    <a class="btn btn-outline-success btn-sm m-1 ml-2" href="/courses">Todos nuestros cursos! <span class="sr-only">
+                </span></a>
                 </li>
             </ul>
             <ul class="navbar-nav">
@@ -32,16 +32,16 @@
                     <li class="nav-item mr-md-1">
                         <div class="btn-group" role="group" aria-label="Basic example">
                             <a class="btn btn-outline-warning" href="/cart">Carrito</a>
-                            <a class="btn btn-outline-light col-sm-12" href="/users/signin">Signin <span class="sr-only">(current)</span></a>
-                            <a class="btn btn-outline-light col-sm-12"  href="/users/login">Login<span class="sr-only">(current)</span></a>
+                            <a class="btn btn-outline-light col-sm-12" href="/users/signin">Regístrate <span class="sr-only">(current)</span></a>
+                            <a class="btn btn-outline-light col-sm-12"  href="/users/login">Ingresar<span class="sr-only">(current)</span></a>
                         </div>
                     </li>
                     <% } else { %>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/courses/create">Publica tu curso <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="btn btn-outline-warning" href="/cart">Carrito</a>
+                    <li class="nav-item mr-md-1">
+                        <div class="btn-group" role="group" aria-label="Basic example">
+                            <a class="btn btn-outline-light" href="/courses/create">Publica tu curso <span class="sr-only">(current)</span></a>
+                            <a class="btn btn-outline-warning" href="/cart">Carrito</a>
+                        </div>
                     </li>
 
                     <li class="nav-item dropdown">
@@ -67,7 +67,7 @@
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#">
                                 <form class="form-inline" action="/users/logout" method="POST">
-                                    <button class="btn btn-outline-danger col-sm-12 my-2 my-sm-0" type="submit">Logout</button>
+                                    <button class="btn btn-outline-danger col-sm-12 my-2 my-sm-0" type="submit">Salir</button>
                                 </form>
                             </a>
                         </div>

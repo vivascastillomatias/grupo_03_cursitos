@@ -42,12 +42,5 @@ module.exports = {
         } catch (error) {
             console.log(error)
         }
-    },
-    bestSale: async (req, res) => {
-        try {
-            
-        } catch (error) {
-            console.log(error)
-        }
-    },
+    }
 }

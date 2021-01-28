@@ -42,7 +42,16 @@
                 <% if (!owner) { %>
                     <% if (obtained) { %>
                         <a class="btn btn-outline-primary col-md-2 m-1" target="_blank" href="https://<%= course.link %>">Ya es tuyo!, disfrútalo</a>
-                    <% } else {%>
+                    <% } else if (toBuy) { %>
+                        <form action="/cart/delete/<%=course.id%>" method="POST">
+                            <div class="input-group">
+                            </div>
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                                <a class="btn btn-outline-secondary">En el carrito!</a>
+                                <button type="submit" class="btn btn-outline-dark btn-sm">Eliminar</button>
+                            </div>
+                        </form>
+                    <% }else {%>
                         <form action="/cart/add/<%= course.id %>" method="POST" class="row justify-content-center btn-group-lg p-2">
                             <input type="submit" class="btn btn-success col-md-4 m-1" value="Agregar al carrito">
                         </form>

@@ -48,19 +48,26 @@ module.exports = {
             const courseDetail = await Course.findByPk(req.params.id, {
                 include: ['categoryCourse']
                });
-               let owner = false;
-               let obtained = false;
-               if (req.session.user) {
-                   owner = courseDetail.owner == req.session.user.id;
-                   let resultQuery = await Sale.findOne({
-                       where: {
-                           [Op.and]: [ {user_id: req.session.user.id}, {course_id: courseDetail.id}]
-                       }
-                   })
-                   resultQuery ? obtained = true : obtained = false;
-               }
+            let owner = false;
+            let obtained = false;
+            if (req.session.user) {
+                owner = courseDetail.owner == req.session.user.id;
+                let resultQuery = await Sale.findOne({
+                    where: {
+                        [Op.and]: [ {user_id: req.session.user.id}, {course_id: courseDetail.id}]
+                    }
+                })
+                resultQuery ? obtained = true : obtained = false;
+            }
+            let toBuy = false;
+            if (req.session.cart) {
+                let carro = req.session.cart;
+                if (carro.indexOf(req.params.id)>=0) {
+                    toBuy = true;
+                }
+            }
             // res.send({title:"Detalle de "+courseDetail.name, course: courseDetail, owner, obtained})
-            res.render('course/detail', {title:"Detalle de "+courseDetail.name, course: courseDetail, owner, obtained})
+            res.render('course/detail', {title:"Detalle de "+courseDetail.name, course: courseDetail, owner, obtained, toBuy})
             console.log('Se accedió al detalle de un curso')
         } catch (error) {
             console.log(error)

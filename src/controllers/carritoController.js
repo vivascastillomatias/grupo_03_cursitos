@@ -37,7 +37,7 @@ module.exports = {
         } else {
             req.session.cart = [req.params.id]
         }
-        res.redirect('/courses')
+        res.redirect('/cart')
     } ,
     delete: (req, res) => {
         if (req.session.cart) {
