@@ -12,11 +12,39 @@ module.exports = {
         try {
             const allCourses = await Course.findAll()
 
-            if (req.session.user) {
-                courses = allCourses.filter(course => course.owner != req.session.user.id);
-            }else{
-                courses = allCourses;
-            }
+            let myCourses = [];
+                    let courses = [];
+                    let myCoursesBuyed = [];
+                    if (req.session.user) {
+                        const query_allCoursesBuyedUser = await Sale.findAll({
+                            attributes: ['course_id'],
+                            where: {
+                                user_id: req.session.user.id
+                            }
+                        })
+
+                        //Optimizar esto ↓
+                        let allCoursesBuyedUser = []
+                        query_allCoursesBuyedUser.map(e => {
+                            allCoursesBuyedUser.push(e.course_id)
+                        })
+                        console.log(allCoursesBuyedUser)
+                        //Optimizar esto ↑
+                        myCourses = allCourses.filter(course => course.owner == req.session.user.id);
+                        
+                        myCoursesBuyed = allCourses.filter(course => {
+                            return (allCoursesBuyedUser.indexOf(course.id) >= 0);
+                        });
+
+                        courses = allCourses.filter(course => {
+                            return (course.owner != req.session.user.id && allCoursesBuyedUser.indexOf(course.id) == -1 )
+                        });
+
+
+
+                    }else{
+                        courses = allCourses;
+                    }
 
             res.render('course/list',{title:"Todos los cursos", courses})
         } catch (error) {
@@ -92,7 +120,7 @@ module.exports = {
             req.file ?  fileName = req.file.filename : fileName = ''
             const newCourse = await Course.create({
                 name: req.body.name,
-                short_description: req.body.short_description,
+                short_description: req.body.shortDescription,
                 description: req.body.description,
                 category: req.body.category,
                 price: req.body.price,
@@ -153,7 +181,7 @@ module.exports = {
             if (req.file) {
                 await Course.update({
                     name: req.body.name,
-                    short_description: req.body.short_description,
+                    short_description: req.body.shortDescription,
                     description: req.body.description,
                     category: req.body.category,
                     price: req.body.price,
@@ -169,7 +197,7 @@ module.exports = {
             } else {
                 await Course.update({
                     name: req.body.name,
-                    short_description: req.body.short_description,
+                    short_description: req.body.shortDescription,
                     description: req.body.description,
                     category: req.body.category,
                     price: req.body.price,

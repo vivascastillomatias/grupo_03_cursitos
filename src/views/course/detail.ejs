@@ -41,7 +41,7 @@
                 <h4> <span class="display-4 badge badge-success"> <%= course.discount %>% OFF </span></h4>
                 <% if (!owner) { %>
                     <% if (obtained) { %>
-                        <a class="btn btn-outline-primary col-md-2 m-1" target="_blank" href="https://<%= course.link %>">Ya es tuyo!, disfrútalo</a>
+                        <a class="btn btn-outline-primary col-md-2 m-1" target="_blank" href="<%= course.link %>">Ya es tuyo!, disfrútalo</a>
                     <% } else if (toBuy) { %>
                         <form action="/cart/delete/<%=course.id%>" method="POST">
                             <div class="input-group">

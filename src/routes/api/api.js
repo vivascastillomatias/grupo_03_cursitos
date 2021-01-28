@@ -17,6 +17,7 @@ router.get('/user/last', userController.last);
 router.get('/categories', categoryController.list);
 
 router.get('/sales', saleController.list5);
-router.get('/sales/best', saleController.bestSale);
+router.get('/sales/bestSale', saleController.bestSale);
+router.get('/sales/bestBuyer', saleController.bestBuyer);
 
 module.exports = router;

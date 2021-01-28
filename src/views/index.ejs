@@ -17,17 +17,56 @@
             <div class="jumbotron bg-dark text-white">
                 <div class="row">
                     <div class="col-sm-6">
-                        <img  class="figure-img img-fluid rounded card-img-top" src="/images/img-banner.jpeg" alt="" srcset="">
+                        <img  class="figure-img img-fluid rounded card-img-top" src="/images/portada.jpg" alt="" srcset="">
                     </div>
                     <div class="col-sm-6">
                         <h3> <span class="badge badge-success display-3"> 70% </span> de los graduados de Cursitos consiguen un empleo en el término de un año</h3>
+                        <hr>
                         <h3> <span class="display-3 badge badge-success"> 30% </span> crean su propia empresa de tecnología o startup</h3>
                         <hr>
                         <p>Aprendé con nosotros lo ultimo en tecnología, para hacer crecer tu hobbie o formarte profesionalmente</p>
+                        <hr>
+                        <p>Regístrate, publica tus cursos y comparte tu conocimientos con toda la comunidad de Cursitos!</p>
                     </div>
                 </div>
             </div>
         <% } else { %>
+            <% if (myCoursesBuyed.length) { %>
+                <section class="jumbotron pt-4">
+                    <div class="row">
+                        <div class="col text-center pb-3">
+                            <h3> Mis cursos Comprados:</h3>
+                        </div>
+                    </div>
+    
+                    <section class="row row-cols-1 row-cols-md-5">
+                        <% myCoursesBuyed.forEach(course=>{%>
+                        <div class="col mb-3" onclick="location.href='/courses/<%=course.id%>'" >
+                            <div class="card text-white bg-dark mb-3" style="min-height: 15rem;cursor: pointer;">
+                                <% if(course.image != ''){ %>
+                                <img src="/images/products/<%= course.image %> " style="max-height: 20rem;" class="card-img-top" alt="<%=course.image%>">
+                                <%}else{ %>
+                                <img src="https://via.placeholder.com/300x300" style="max-height: 20rem;" class="card-img-top" alt="<%=course.image%>">
+                                <%}%>
+                                <div class="card-body">
+                                    <h5 class="card-title"><%=course.name%></h5>
+                                </div>
+                            </div>
+                        </div>
+                        <%})%>
+                    </section>
+                </section>
+             
+            <% } else { %>
+                <div class="jumbotron bg-dark text-white">
+                    <div class="row">
+                        <div class="col text-center">
+                            <h3> ¡Ups!, No tienes ningún curso comprado </h3>
+                            <a class="btn btn-outline-success col-sm-4 my-2" href="/courses/create"> Ver todos los cursos! </a>
+                        </div>
+                    </div>
+                </div>
+            <% } %>
             <% if (myCourses.length) { %>
                 <section class="jumbotron pt-4">
                     <div class="row">
@@ -66,7 +105,7 @@
                 <div class="jumbotron bg-dark text-white">
                     <div class="row">
                         <div class="col text-center">
-                            <h3> No tienes ningún curso publicado, hazlo ahora! </h3>
+                            <h3> ¿Eres profesor? ¿Tienes algo para compartir?, hazlo ahora! </h3>
                             <a class="btn btn-outline-success col-sm-4 my-2" href="/courses/create"> Publicar curso! </a>
                         </div>
                     </div>
@@ -80,29 +119,6 @@
     <section class="jumbotron">
         <h1 class="display-6">¿Que deseas aprender?</h1>
         <p class="lead">En Cursitos! encontrarás los mejores cursos para aprender online </p>
-        <ul class="nav justify-content-center my-lg-3">
-            
-
-
-            <li class="nav-item">
-              <a class="nav-link active" href="#">Todos</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" href="#">Programacion front-end</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Programacion back-end</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Marketing Digital</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Edición multimedia</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">inversiones</a>
-            </li>
-        </ul>
         <section class="row row-cols-1 row-cols-md-4">
             
 

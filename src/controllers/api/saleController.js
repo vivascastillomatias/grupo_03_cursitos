@@ -27,5 +27,18 @@ module.exports = {
         } catch (error) {
             console.log(error)
         }
+    },
+    bestBuyer: async (req, res) => {
+        try {
+            const bestBuyer = await Sale.findOne({
+                attributes: [[Sequelize.fn('COUNT', Sequelize.col('user_id')), 'userCount']],
+                include: ['user'],
+                group: ['user_id'],
+                order:[[Sequelize.col("userCount"), "DESC"]]
+            });
+            res.json({bestBuyer})
+        } catch (error) {
+            console.log(error)
+        }
     }
 }

@@ -44,14 +44,14 @@
                         </div>
                     </li>
 
-                    <li class="nav-item dropdown">
+                    <li class="nav-item dropleft">
                         <a class="btn btn-outline-light dropdown-toggle btn-sm m-1 ml-2" href="#" role="button" id="option-session" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <%= userLoged.user %>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             <% if (userLoged.image) { %>
                                 <a href="#" class="dropdown-item align-content-center">
-                                    <div class="col-sm-12">
+                                    <div class="col-sm-12 col-xs-6">
                                         <img src="/images/users/<%=userLoged.image%>" width="100%" class="rounded-circle" alt="<%=userLoged.image%>">
                                     </div>
                                 </a>
