@@ -1,5 +1,7 @@
 # TRABAJO PRÁCTICO INTEGRADOR - CURSO PROGRAMACIÓN WEB FULL STACK - DIGITAL HOUSE ARGENTINA
 
+## Descripción del sitio web
+
 _Nuestro sitio ofrecerá cursos online de formación educativa y funcionará como intermediario. Las personas que quieran publicar sus cursos podrán hacerlo y las demás tendrán acceso a dicho curso a cambio de un costo establecido._
 
 _Estamos abocados a personas que están buscando formarse de manera virtual, ayudando a combatir  el impedimento a aprender de manera presencial. Esta modalidad de cursos nos permite cruzar las fronteras y llegar a cualquier punto donde una persona esté dispuesta a aprender._
@@ -19,6 +21,7 @@ _Nuestro público objetivo son los millennial y centennial, los cuales ya cuenta
 ## Iniciar aplicación
 
 1. Git Clone: https://github.com/vivascastillomatias/grupo_03_cursitos
+2. Instalar XAMPP, importar modelo de base de datos situado [aquí](https://github.com/vivascastillomatias/grupo_03_cursitos/blob/master/extras/diagram/db_cursitos.sql)
 2. Situarse en la raíz del proyecto.
 3. Ejercutar el comando "npm install".
 4. Ejercutar el comando "npm start".
@@ -48,8 +51,12 @@ Abordamos los mejores sitios de ventas de cursos como:
 * [Crehana](https://www.crehana.com/ar/)
 * [Platzi](https://platzi.com/)
 
-Basandonos en los sitios anteriormente nombrados, pudimos recolectar formas de presentación de los cursos, la ubicación de la barra de búsqueda y características principales de un carrito de compras. Tomando como base estos tópicos, realizamos [Wireframes](https://github.com/ikx94/grupo_3_cursitos/tree/master/wireframes) donde plasmamos las primeras ideas para la construcción del front-end.
-También, dentro de los modelos de diseño que manejan y luego analizarlo, construimos un [Logo](https://github.com/ikx94/grupo_3_cursitos/tree/master/design) para nuestro sitio.
+Basandonos en los sitios anteriormente nombrados, pudimos recolectar formas de presentación de los cursos, la ubicación de la barra de búsqueda y características principales de un carrito de compras. Tomando como base estos tópicos, realizamos [Wireframes](https://github.com/vivascastillomatias/grupo_03_cursitos/tree/master/extras/wireframes) donde plasmamos las primeras ideas para la construcción del front-end.
+También, dentro de los modelos de diseño que manejan y luego analizarlo, construimos un [Logo](https://github.com/vivascastillomatias/grupo_03_cursitos/tree/master/extras/design) para nuestro sitio.
+
+Para el desarrollo del sitio se realizó en entregas cortas de porciones de funcionalidad, [aquí](https://github.com/vivascastillomatias/grupo_03_cursitos/tree/master/extras/sprints) encontrarás los diferentes sprits por los cuales pasó el sitio para llegar a su culminación.
+
+Implementamos la metodología agil SCRUM para la divisón de trabajo y responsabilidades que debíamos afrontar. Esto nos permitió poder continuar con eficiencia y llegar a los objetivos planteados. [Aquí](https://github.com/vivascastillomatias/grupo_03_cursitos/blob/master/retro.md) encontrarás las retrospectivas realizadas por los miembros del equipo de trabajo en el trascurso del proyecto.
 
 
 ## Herramientas de construcción 🛠️
@@ -61,8 +68,13 @@ _Herramientas para construir el proyecto_
 * JAVASCRIPT
 * [NodeJS](http://www.dropwizard.io/1.0.2/docs/) - Usado para el back-end
 * [Express](https://maven.apache.org/) - Usado para los servicios del back-end
+* [Sequelize](https://sequelize.org/) - ORM usado para el mapeo con base de datos
+* [Bootstrap](https://getbootstrap.com/) - Librería de estilos CSS
+* [Express-validator](https://express-validator.github.io/docs/) - Módulo para validaciones en Back-end
+* [Multer](https://www.npmjs.com/package/multer) - Módulo para carga de archivos
+* [Bcryptjs](https://www.npmjs.com/package/bcryptjs) - Módulo para la encriptacion de contraseñas
+* [Ejs](https://www.npmjs.com/package/bcryptjs) - Template engine
 * [Nodemon](https://github.blog/2020-04-15-npm-has-joined-github/)
-* [BrowserSync](https://www.browsersync.io/)
 
 ## Metodologías de organización
 
